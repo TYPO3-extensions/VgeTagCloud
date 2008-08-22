@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for plugin &quot;tx_vgetagcloud_pi2&quot;</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="no_pages">No pages were found matching tag %s.</label>
+			<label index="related_single_page">A single page was found matching tag %s.</label>
+			<label index="related_pages">%d pages were found matching tag %s.</label>
+		</languageKey>
+	</data>
+</T3locallang>

@@ -1,0 +1,111 @@
+/*
+ * Default TypoScript setup for vge_tagcloud_pi1 plugin
+ *
+ * $Id: setup.txt 3928 2008-06-02 19:14:02Z fsuter $
+ */
+ 
+plugin.tx_vgetagcloud_pi1 {
+
+// Default settings for origin of keywords
+
+	referenceTable = pages
+	referenceFields = keywords
+	startPage.data = leveluid:0
+	recursive = 255
+	uniqueKeywordsPerItem = 0
+	splitWords = [-.,;:"&%()<>!?/'\s]
+	caseHandling = lower
+
+// Cache of page links is active by default
+
+	disableLinkCache = 0
+
+// Some exclusion filter can be set for any table
+// The lines below are an example
+// They mean that tt_content records with CType = 'mailform' and list_type = 'vge_tagcloud_pi1' will be excluded
+// For the pages table, we exclude the sysFolder type
+
+	exclude.tt_content.CType = mailform
+	exclude.tt_content.list_type = vge_tagcloud_pi1
+	exclude.pages.doktype = 5,199,254,255
+
+// The "not in menu" property of the pages in handled differently
+// because it must be taken into account also when selecting content elements from pages
+
+	includeNotInMenu = 0
+
+// Default target page for tag links
+
+	targetPage = {$plugin.tx_vgetagcloud_pi1.pageID}
+
+// Default sorting
+
+	sorting = weight
+	sortOrder = desc
+
+// Default rendering options
+
+	renderingType = weight
+	minWeight = 100
+	maxWeight = 200
+	sortingForDisplay = alpha
+	sortOrderForDisplay = asc
+
+// Default stdWrap for individual tags
+
+	tagWrap {
+		dataWrap = <li style="font-size: {field:tag_style}%">|</li>
+		typolink {
+			parameter.data = field:tag_link
+			additionalParams.dataWrap = &tx_vgetagcloud_pi2[pages]={field:tag_pages}&tx_vgetagcloud_pi2[keyword]={field:tag_keyword}
+			ATagParams.dataWrap = id="tag{field:tag_id}" title="{field:tag_keyword}"
+			useCacheHash = 1
+		}
+	}
+
+// Default stdWrap for the whole cloud
+
+	cloudWrap.wrap = <!--TYPO3SEARCH_end--><ul>|</ul><div style="clear:both;"></div><!--TYPO3SEARCH_begin-->
+
+// Default styles
+
+	_CSS_DEFAULT_STYLE (
+		.tx-vgetagcloud-pi1 {
+			background-color: #ccc;
+			line-height: 200%;
+		}
+		.tx-vgetagcloud-pi1 ul {
+			margin: 0px;
+			padding: 0px;
+			list-style: none;
+			float: left;
+		}
+		.tx-vgetagcloud-pi1 li {
+			display: inline;
+			float: left;
+		}
+		.tx-vgetagcloud-pi1 li a {
+			padding: 4px;
+			text-decoration: none;
+		}
+	)
+}
+
+/*
+ * Default TypoScript setup for vge_tagcloud_pi2 plugin
+ */
+ 
+plugin.tx_vgetagcloud_pi2 {
+	keyword.wrap = <strong>|</strong>
+	message.wrap = <p>|</p>
+	results = HMENU
+	results {
+		special = list
+		special.value.field = tag_pages
+		1 = TMENU
+		1 {
+			NO.allWrap = <li>|</li>
+		}
+		wrap = <ul>|</ul>
+	}
+}

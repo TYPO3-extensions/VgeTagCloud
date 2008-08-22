@@ -1,0 +1,318 @@
+<T3DataStructure>
+	<meta>
+		<langDisable>1</langDisable>
+	</meta>
+	<sheets>
+		<sDEF>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.sheetGeneral</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<referenceTable>
+						<TCEforms>
+							<label>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.referenceTable</label>
+							<config>
+								<type>select</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.chooseTable</numIndex>
+										<numIndex index="1">0</numIndex>
+									</numIndex>
+								</items>
+								<itemsProcFunc>tx_vgetagcloud_listsdef->getTables</itemsProcFunc>
+								<requestUpdate>1</requestUpdate>
+								<size>1</size>
+								<minitems>0</minitems>
+								<maxitems>1</maxitems>
+							</config>
+						</TCEforms>
+					</referenceTable>
+					<referenceFields>
+						<TCEforms>
+							<label>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.referenceFields</label>
+							<config>
+								<type>select</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.chooseFields</numIndex>
+										<numIndex index="1">0</numIndex>
+									</numIndex>
+								</items>
+								<itemsProcFunc>tx_vgetagcloud_listsdef->getFields</itemsProcFunc>
+								<minitems>0</minitems>
+								<maxitems>100</maxitems>
+								<size>10</size>
+								<multiple>1</multiple>
+							</config>
+						</TCEforms>
+					</referenceFields>
+					<includeNotInMenu>
+						<TCEforms>
+							<label>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.includeNotInMenu</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</includeNotInMenu>
+					<splitChar>
+						<TCEforms>
+							<label>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.splitChar</label>
+							<config>
+								<type>input</type>
+								<checkbox></checkbox>
+								<size>4</size>
+							</config>
+						</TCEforms>
+					</splitChar>
+					<uniqueKeywordsPerItem>
+						<TCEforms>
+							<label>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.uniqueKeywordsPerItem</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</uniqueKeywordsPerItem>
+					<caseHandling>
+						<TCEforms>
+							<label>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.caseHandling</label>
+							<config>
+								<type>select</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.caseHandling.nothing</numIndex>
+										<numIndex index="1">0</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.caseHandling.lower</numIndex>
+										<numIndex index="1">lower</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.caseHandling.upper</numIndex>
+										<numIndex index="1">upper</numIndex>
+									</numIndex>
+								</items>
+								<default>lower</default>
+								<size>1</size>
+								<minitems>0</minitems>
+								<maxitems>1</maxitems>
+							</config>
+						</TCEforms>
+					</caseHandling>
+					<targetPage>
+						<TCEforms>
+							<label>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.targetPage</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>pages</allowed>
+								<size>1</size>
+								<minitems>0</minitems>
+								<maxitems>1</maxitems>
+								<show_thumbs>1</show_thumbs>
+							</config>
+						</TCEforms>
+					</targetPage>
+					<sorting>
+						<TCEforms>
+							<label>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.sorting</label>
+							<config>
+								<type>select</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.sorting.natural</numIndex>
+										<numIndex index="1">natural</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.sorting.alphabetical</numIndex>
+										<numIndex index="1">alpha</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.sorting.weight</numIndex>
+										<numIndex index="1">weight</numIndex>
+									</numIndex>
+								</items>
+								<default>weight</default>
+								<size>1</size>
+								<minitems>0</minitems>
+								<maxitems>1</maxitems>
+							</config>
+						</TCEforms>
+					</sorting>
+					<sortOrder>
+						<TCEforms>
+							<label>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.sortOrder</label>
+							<config>
+								<type>select</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.sortOrder.asc</numIndex>
+										<numIndex index="1">asc</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.sortOrder.desc</numIndex>
+										<numIndex index="1">desc</numIndex>
+									</numIndex>
+								</items>
+								<default>desc</default>
+								<size>1</size>
+								<minitems>0</minitems>
+								<maxitems>1</maxitems>
+							</config>
+						</TCEforms>
+					</sortOrder>
+					<maxWords>
+						<TCEforms>
+							<label>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.maxWords</label>
+							<config>
+								<type>input</type>
+								<eval>int</eval>
+								<checkbox></checkbox>
+								<size>6</size>
+							</config>
+						</TCEforms>
+					</maxWords>
+				</el>
+			</ROOT>
+		</sDEF>
+		<sFormat>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.sheetFormat</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<renderingType>
+						<TCEforms>
+							<label>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.renderingType</label>
+							<config>
+								<type>radio</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.renderingType.weight</numIndex>
+										<numIndex index="1">weight</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.renderingType.styles</numIndex>
+										<numIndex index="1">styles</numIndex>
+									</numIndex>
+								</items>
+								<default>weight</default>
+							</config>
+						</TCEforms>
+					</renderingType>
+					<minWeight>
+						<TCEforms>
+							<label>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.minWeight</label>
+							<config>
+								<type>input</type>
+								<eval>int</eval>
+								<checkbox></checkbox>
+								<size>6</size>
+							</config>
+						</TCEforms>
+					</minWeight>
+					<maxWeight>
+						<TCEforms>
+							<label>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.maxWeight</label>
+							<config>
+								<type>input</type>
+								<eval>int</eval>
+								<checkbox></checkbox>
+								<size>6</size>
+							</config>
+						</TCEforms>
+					</maxWeight>
+					<styles>
+						<TCEforms>
+							<label>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.styles</label>
+							<config>
+								<type>input</type>
+								<checkbox></checkbox>
+								<size>30</size>
+							</config>
+						</TCEforms>
+					</styles>
+					<separator>
+						<TCEforms>
+							<label>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.separator</label>
+							<config>
+								<type>input</type>
+								<checkbox></checkbox>
+								<size>5</size>
+							</config>
+						</TCEforms>
+					</separator>
+					<sortingForDisplay>
+						<TCEforms>
+							<label>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.sortingForDisplay</label>
+							<config>
+								<type>select</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.sorting.natural</numIndex>
+										<numIndex index="1">natural</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.sorting.alphabetical</numIndex>
+										<numIndex index="1">alpha</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.sorting.weight</numIndex>
+										<numIndex index="1">weight</numIndex>
+									</numIndex>
+								</items>
+								<default>alpha</default>
+								<size>1</size>
+								<minitems>0</minitems>
+								<maxitems>1</maxitems>
+							</config>
+						</TCEforms>
+					</sortingForDisplay>
+					<sortOrderForDisplay>
+						<TCEforms>
+							<label>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.sortOrder</label>
+							<config>
+								<type>select</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.sortOrder.asc</numIndex>
+										<numIndex index="1">asc</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.sortOrder.desc</numIndex>
+										<numIndex index="1">desc</numIndex>
+									</numIndex>
+								</items>
+								<size>1</size>
+								<minitems>0</minitems>
+								<maxitems>1</maxitems>
+							</config>
+						</TCEforms>
+					</sortOrderForDisplay>
+				</el>
+			</ROOT>
+		</sFormat>
+		<sTyposcript>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.sheetTyposcript</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<flexformTS>
+						<TCEforms>
+							<label>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.flexformTS</label>
+							<config>
+								<type>text</type>
+								<size>30</size>
+								<rows>20</rows>
+							</config>
+						</TCEforms>      
+					</flexformTS>
+				</el>
+			</ROOT>
+		</sTyposcript>		
+	</sheets>
+</T3DataStructure>

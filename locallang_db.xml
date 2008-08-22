@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'vge_tagcloud'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tt_content.list_type_pi1">A Better Tag Cloud</label>
+			<label index="tt_content.list_type_pi2">Tag Cloud Results</label>
+			<label index="vge_tagcloud.pi_flexform.sheetGeneral">General Setup</label>
+			<label index="vge_tagcloud.pi_flexform.sheetFormat">Format &amp; Style</label>
+			<label index="vge_tagcloud.pi_flexform.sheetTyposcript">TypoScript</label>
+			<label index="vge_tagcloud.pi_flexform.referenceTable">Reference table</label>
+			<label index="vge_tagcloud.pi_flexform.chooseTable">choose which table to use</label>
+			<label index="vge_tagcloud.pi_flexform.referenceFields">Reference fields</label>
+			<label index="vge_tagcloud.pi_flexform.chooseFields">choose which fields to use</label>
+			<label index="vge_tagcloud.pi_flexform.targetPage">Target page for tag links</label>
+			<label index="vge_tagcloud.pi_flexform.includeNotInMenu">Include not in menu pages</label>
+			<label index="vge_tagcloud.pi_flexform.splitChar">Character for splitting field(s) value</label>
+			<label index="vge_tagcloud.pi_flexform.uniqueKeywordsPerItem">Unique keywords for each item</label>
+			<label index="vge_tagcloud.pi_flexform.caseHandling">Case handling</label>
+			<label index="vge_tagcloud.pi_flexform.caseHandling.nothing">Do nothing</label>
+			<label index="vge_tagcloud.pi_flexform.caseHandling.lower">Force to lower case</label>
+			<label index="vge_tagcloud.pi_flexform.caseHandling.upper">Force to upper case</label>
+			<label index="vge_tagcloud.pi_flexform.maxWords">Maximum number of tags</label>
+			<label index="vge_tagcloud.pi_flexform.sorting">Sorting (before capping)</label>
+			<label index="vge_tagcloud.pi_flexform.sorting.natural">Natural</label>
+			<label index="vge_tagcloud.pi_flexform.sorting.alphabetical">Alphabetical</label>
+			<label index="vge_tagcloud.pi_flexform.sorting.weight">By weight</label>
+			<label index="vge_tagcloud.pi_flexform.sortOrder">Sort order</label>
+			<label index="vge_tagcloud.pi_flexform.sortOrder.asc">Ascending</label>
+			<label index="vge_tagcloud.pi_flexform.sortOrder.desc">Descending</label>
+			<label index="vge_tagcloud.pi_flexform.renderingType">Type of styling</label>
+			<label index="vge_tagcloud.pi_flexform.renderingType.weight">Use relative weights</label>
+			<label index="vge_tagcloud.pi_flexform.renderingType.styles">Use list of styles</label>
+			<label index="vge_tagcloud.pi_flexform.minWeight">Minimum weight (if using weights)</label>
+			<label index="vge_tagcloud.pi_flexform.maxWeight">Maximum weight (if using weights)</label>
+			<label index="vge_tagcloud.pi_flexform.styles">List of styles, comma-separated (if using styles)</label>
+			<label index="vge_tagcloud.pi_flexform.separator">Separator</label>
+			<label index="vge_tagcloud.pi_flexform.sortingForDisplay">Sorting (for display)</label>
+			<label index="vge_tagcloud.pi_flexform.flexformTS">Override TypoScript</label>
+		</languageKey>
+	</data>
+</T3locallang>

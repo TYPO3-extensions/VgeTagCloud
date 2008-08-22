@@ -1,0 +1,5 @@
+plugin.tx_vgetagcloud_pi1 {
+
+# cat=plugin.tx_vgetagcloud_pi1//; type=int; label= Page ID: ID of the page the tag cloud links should point to
+	pageID = 0
+}

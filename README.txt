@@ -1,0 +1,1 @@
+Add a tag cloud to your page. Please refer to the manual.

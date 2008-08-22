@@ -1,0 +1,117 @@
+a:2:{s:4:"meta";a:3:{s:5:"title";s:18:"A Better Tag Cloud";s:5:"descr";s:0:"";s:7:"options";a:2:{s:10:"usageCount";N;s:19:"includeCodeAbstract";N;}}s:5:"files";a:4:{s:14:"MD5_6eaec54d1b";a:4:{s:8:"filename";s:33:"class.tx_vgetagcloud_listsdef.php";s:8:"filesize";i:2915;s:6:"header";a:5:{s:4:"text";s:62:"
+
+Various itemsProcFuncs for the 'vge_tagcloud' pi1 FlexForm.
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:6:"[type]";i:1;s:3:"...";}s:5:"other";a:3:{i:0;s:44:"@author		Ville de Genève <typo3@ville-ge.ch>";i:1;s:15:"@package		TYPO3";i:2;s:26:"@subpackage	tx_vgetagcloud";}s:11:"other_index";a:3:{s:7:"@author";a:1:{i:0;s:35:"Ville de Genève <typo3@ville-ge.ch>";}s:8:"@package";a:1:{i:0;s:6:"TYPO3 ";}s:11:"@subpackage";a:1:{i:0;s:15:"tx_vgetagcloud ";}}}s:3:"DAT";a:3:{i:1;a:8:{s:6:"header";s:31:"class tx_vgetagcloud_listsdef {";s:5:"class";i:1;s:11:"parentClass";s:23:"tx_vgetagcloud_listsdef";s:4:"cDat";a:5:{s:4:"text";s:62:"
+
+Various itemsProcFuncs for the 'vge_tagcloud' pi1 FlexForm.
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:6:"[type]";i:1;s:3:"...";}s:5:"other";a:3:{i:0;s:44:"@author		Ville de Genève <typo3@ville-ge.ch>";i:1;s:15:"@package		TYPO3";i:2;s:26:"@subpackage	tx_vgetagcloud";}s:11:"other_index";a:3:{s:7:"@author";a:1:{i:0;s:35:"Ville de Genève <typo3@ville-ge.ch>";}s:8:"@package";a:1:{i:0;s:6:"TYPO3 ";}s:11:"@subpackage";a:1:{i:0;s:15:"tx_vgetagcloud ";}}}s:7:"content";s:0:"";s:12:"content_size";i:2;s:13:"content_lines";i:1;s:6:"atLine";i:31;}i:3;a:4:{s:6:"header";s:29:"function getTables($config) {";s:11:"parentClass";s:23:"tx_vgetagcloud_listsdef";s:4:"cDat";a:3:{s:4:"text";s:75:"
+
+This method reads the TCA and adds all table names to the list of items
+
+";s:5:"param";a:1:{i:0;a:2:{i:0;s:5:"array";i:1;s:38:"$config: content element configuration";}}s:6:"return";a:2:{i:0;s:5:"array";i:1;s:58:"content element configuration with dynamically added items";}}s:6:"atLine";i:39;}i:5;a:7:{s:6:"header";s:29:"function getFields($config) {";s:11:"parentClass";s:23:"tx_vgetagcloud_listsdef";s:4:"cDat";a:3:{s:4:"text";s:94:"
+
+This method reads the TCA for a given table and adds all table fields to the list of items
+
+";s:5:"param";a:1:{i:0;a:2:{i:0;s:5:"array";i:1;s:38:"$config: content element configuration";}}s:6:"return";a:2:{i:0;s:5:"array";i:1;s:58:"content element configuration with dynamically added items";}}s:7:"content";s:0:"";s:12:"content_size";i:976;s:13:"content_lines";i:27;s:6:"atLine";i:55;}}}s:14:"MD5_6ec14f3b2f";a:4:{s:8:"filename";s:43:"hooks/class.tx_vgetagcloud_hook_example.php";s:8:"filesize";i:3193;s:6:"header";a:5:{s:4:"text";s:89:"
+
+This class is an example of using the hooks provided within the vge_tagcloud extension
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:6:"[type]";i:1;s:3:"...";}s:5:"other";a:3:{i:0;s:44:"@author		Ville de Genève <typo3@ville-ge.ch>";i:1;s:15:"@package		TYPO3";i:2;s:26:"@subpackage	tx_vgetagcloud";}s:11:"other_index";a:3:{s:7:"@author";a:1:{i:0;s:35:"Ville de Genève <typo3@ville-ge.ch>";}s:8:"@package";a:1:{i:0;s:6:"TYPO3 ";}s:11:"@subpackage";a:1:{i:0;s:15:"tx_vgetagcloud ";}}}s:3:"DAT";a:4:{i:1;a:8:{s:6:"header";s:35:"class tx_vgetagcloud_hook_example {";s:5:"class";i:1;s:11:"parentClass";s:27:"tx_vgetagcloud_hook_example";s:4:"cDat";a:5:{s:4:"text";s:89:"
+
+This class is an example of using the hooks provided within the vge_tagcloud extension
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:6:"[type]";i:1;s:3:"...";}s:5:"other";a:3:{i:0;s:44:"@author		Ville de Genève <typo3@ville-ge.ch>";i:1;s:15:"@package		TYPO3";i:2;s:26:"@subpackage	tx_vgetagcloud";}s:11:"other_index";a:3:{s:7:"@author";a:1:{i:0;s:35:"Ville de Genève <typo3@ville-ge.ch>";}s:8:"@package";a:1:{i:0;s:6:"TYPO3 ";}s:11:"@subpackage";a:1:{i:0;s:15:"tx_vgetagcloud ";}}}s:7:"content";s:0:"";s:12:"content_size";i:2;s:13:"content_lines";i:1;s:6:"atLine";i:31;}i:3;a:7:{s:6:"header";s:58:"function postProcessRawKeywords($keywords, &$callingObj) {";s:11:"parentClass";s:27:"tx_vgetagcloud_hook_example";s:4:"cDat";a:3:{s:4:"text";s:252:"
+
+This method receives an array containing all the keywords found by the vge_tagcloud extension
+before any processing has been done on the keywords, except for case conversion
+
+In this example, we just filter out any word containing 2 letters or less
+
+";s:5:"param";a:2:{i:0;a:2:{i:0;s:5:"array";i:1;s:27:"$keywords: list of keywords";}i:1;a:2:{i:0;s:5:"mixed";i:1;s:43:"$callingObj: callback to the calling object";}}s:6:"return";a:2:{i:0;s:5:"array";i:1;s:28:"transformed list of keywords";}}s:7:"content";s:0:"";s:12:"content_size";i:249;s:13:"content_lines";i:9;s:6:"atLine";i:43;}i:5;a:4:{s:6:"header";s:60:"function postProcessFinalKeywords($keywords, &$callingObj) {";s:11:"parentClass";s:27:"tx_vgetagcloud_hook_example";s:4:"cDat";a:3:{s:4:"text";s:337:"
+
+This method receives an array containing all the keywords just before they are used for display
+Note that this array is associative, with the keywords as keys and their absolute weights as values
+This association must absolutely be preserved for the extension to work properly!
+
+In this example, we sort the keywords by string length
+
+";s:5:"param";a:2:{i:0;a:2:{i:0;s:5:"array";i:1;s:27:"$keywords: list of keywords";}i:1;a:2:{i:0;s:5:"mixed";i:1;s:43:"$callingObj: callback to the calling object";}}s:6:"return";a:2:{i:0;s:5:"array";i:1;s:28:"transformed list of keywords";}}s:6:"atLine";i:64;}i:7;a:7:{s:6:"header";s:38:"function sortKeywordsByLength($a,$b) {";s:11:"parentClass";s:27:"tx_vgetagcloud_hook_example";s:4:"cDat";a:3:{s:4:"text";s:97:"
+
+This method is a helper sorting function to sort an array according to the length of its keys
+
+";s:5:"param";a:2:{i:0;a:2:{i:0;s:6:"string";i:1;s:18:"$a: first item key";}i:1;a:2:{i:0;s:6:"string";i:1;s:19:"$b: second item key";}}s:6:"return";a:2:{i:0;s:7:"integer";i:1;s:44:"-1, 0 or 1 depending in result of comparison";}}s:7:"content";s:0:"";s:12:"content_size";i:281;s:13:"content_lines";i:10;s:6:"atLine";i:76;}}}s:14:"MD5_8f321b321c";a:4:{s:8:"filename";s:32:"pi1/class.tx_vgetagcloud_pi1.php";s:8:"filesize";i:20200;s:6:"header";a:5:{s:4:"text";s:65:"
+
+Plugin 'A Better Tag Cloud' for the 'vge_tagcloud' extension.
+
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:6:"[type]";i:1;s:3:"...";}s:5:"other";a:3:{i:0;s:44:"@author		Ville de Genève <typo3@ville-ge.ch>";i:1;s:15:"@package		TYPO3";i:2;s:26:"@subpackage	tx_vgetagcloud";}s:11:"other_index";a:3:{s:7:"@author";a:1:{i:0;s:35:"Ville de Genève <typo3@ville-ge.ch>";}s:8:"@package";a:1:{i:0;s:6:"TYPO3 ";}s:11:"@subpackage";a:1:{i:0;s:15:"tx_vgetagcloud ";}}}s:3:"DAT";a:10:{i:1;a:8:{s:6:"header";s:47:"class tx_vgetagcloud_pi1 extends tslib_pibase {";s:5:"class";i:1;s:11:"parentClass";s:18:"tx_vgetagcloud_pi1";s:4:"cDat";a:3:{s:4:"text";s:559:"
+
+[CLASS/FUNCTION INDEX of SCRIPT]
+
+
+
+  55: class tx_vgetagcloud_pi1 extends tslib_pibase
+  71:     function main($content,$conf)
+ 109:     function init($conf)
+ 150:     function buildCondition()
+ 291:     function getKeywords($result)
+ 387:     function countKeywords($keywords)
+ 406:     function sortAndCapKeywords($keywords)
+ 459:     function generateCloud($keywords)
+ 504:     function sortKeywords($keywords)
+ 542:     function calculateStyles($keywords)
+
+TOTAL FUNCTIONS: 9
+(This index is automatically created/updated by the extension "extdeveval")
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:6:"[type]";i:1;s:3:"...";}}s:7:"content";s:0:"";s:12:"content_size";i:510;s:13:"content_lines";i:8;s:6:"atLine";i:53;}i:3;a:7:{s:6:"header";s:31:"function main($content,$conf) {";s:11:"parentClass";s:18:"tx_vgetagcloud_pi1";s:4:"cDat";a:3:{s:4:"text";s:75:"
+
+This is the main method of the plugin. It returns the content to display
+";s:5:"param";a:2:{i:0;a:2:{i:0;s:6:"string";i:1;s:28:"$content: The plugin content";}i:1;a:2:{i:0;s:5:"array";i:1;s:31:"$conf: The plugin configuration";}}s:6:"return";a:2:{i:0;s:6:"string";i:1;s:44:"The content that is displayed on the website";}}s:7:"content";s:0:"";s:12:"content_size";i:793;s:13:"content_lines";i:31;s:6:"atLine";i:69;}i:5;a:7:{s:6:"header";s:22:"function init($conf) {";s:11:"parentClass";s:18:"tx_vgetagcloud_pi1";s:4:"cDat";a:3:{s:4:"text";s:47:"
+
+This method performs various initialisations
+";s:5:"param";a:1:{i:0;a:2:{i:0;s:5:"array";i:1;s:61:"$conf: plugin configuration, as received by the main() method";}}s:6:"return";a:2:{i:0;s:4:"void";i:1;s:0:"";}}s:7:"content";s:0:"";s:12:"content_size";i:1412;s:13:"content_lines";i:34;s:6:"atLine";i:107;}i:7;a:7:{s:6:"header";s:27:"function buildCondition() {";s:11:"parentClass";s:18:"tx_vgetagcloud_pi1";s:4:"cDat";a:3:{s:4:"text";s:138:"
+
+This method builds the condition (WHERE clause) to apply to the query
+that will be used to get the fields where the keywords are stored
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:6:"string";i:1;s:22:"part of a WHERE clause";}}s:7:"content";s:0:"";s:12:"content_size";i:4765;s:13:"content_lines";i:132;s:6:"atLine";i:148;}i:9;a:7:{s:6:"header";s:31:"function getKeywords($result) {";s:11:"parentClass";s:18:"tx_vgetagcloud_pi1";s:4:"cDat";a:3:{s:4:"text";s:215:"
+
+This method takes the results from the database query and makes them into a list of keywords
+It creates a raw array with one entry per keyword, with no sorting or counting whatsoever
+This is done at a later stage
+";s:5:"param";a:1:{i:0;a:2:{i:0;s:7:"integer";i:1;s:44:"$result: handle to the database query result";}}s:6:"return";a:2:{i:0;s:5:"array";i:1;s:43:"Simple array with 1 entry per keyword found";}}s:7:"content";s:0:"";s:12:"content_size";i:3239;s:13:"content_lines";i:88;s:6:"atLine";i:289;}i:11;a:7:{s:6:"header";s:35:"function countKeywords($keywords) {";s:11:"parentClass";s:18:"tx_vgetagcloud_pi1";s:4:"cDat";a:3:{s:4:"text";s:125:"
+
+This method counts how many times each keyword appears
+and returns an associative array with the keywords and their totals
+";s:5:"param";a:1:{i:0;a:2:{i:0;s:5:"array";i:1;s:54:"$keywords: 1-dimensional array containing all keywords";}}s:6:"return";a:2:{i:0;s:5:"array";i:1;s:57:"Array of all keywords and their totals as key-value pairs";}}s:7:"content";s:0:"";s:12:"content_size";i:240;s:13:"content_lines";i:12;s:6:"atLine";i:385;}i:13;a:7:{s:6:"header";s:40:"function sortAndCapKeywords($keywords) {";s:11:"parentClass";s:18:"tx_vgetagcloud_pi1";s:4:"cDat";a:3:{s:4:"text";s:85:"
+
+This method applies the sorting and limit criteria to the list of counted keywords
+";s:5:"param";a:1:{i:0;a:2:{i:0;s:5:"array";i:1;s:36:"$keywords: array of keywords to sort";}}s:6:"return";a:2:{i:0;s:5:"array";i:1;s:37:"Array of keywords, sorted and limited";}}s:7:"content";s:0:"";s:12:"content_size";i:1089;s:13:"content_lines";i:46;s:6:"atLine";i:404;}i:15;a:7:{s:6:"header";s:35:"function generateCloud($keywords) {";s:11:"parentClass";s:18:"tx_vgetagcloud_pi1";s:4:"cDat";a:3:{s:4:"text";s:78:"
+
+This method generates the actual tag cloud given a list of counted keywords
+";s:5:"param";a:1:{i:0;a:2:{i:0;s:5:"array";i:1;s:35:"$keywords: Keywords and their count";}}s:6:"return";a:2:{i:0;s:6:"string";i:1;s:26:"HTML-code of the tag cloud";}}s:7:"content";s:0:"";s:12:"content_size";i:1423;s:13:"content_lines";i:38;s:6:"atLine";i:457;}i:17;a:4:{s:6:"header";s:34:"function sortKeywords($keywords) {";s:11:"parentClass";s:18:"tx_vgetagcloud_pi1";s:4:"cDat";a:3:{s:4:"text";s:81:"
+
+This method applies another sorting before the keywords are actually displayed
+";s:5:"param";a:1:{i:0;a:2:{i:0;s:5:"array";i:1;s:36:"$keywords: array of keywords to sort";}}s:6:"return";a:2:{i:0;s:5:"array";i:1;s:24:"Array of sorted keywords";}}s:6:"atLine";i:502;}i:19;a:7:{s:6:"header";s:37:"function calculateStyles($keywords) {";s:11:"parentClass";s:18:"tx_vgetagcloud_pi1";s:4:"cDat";a:3:{s:4:"text";s:59:"
+
+This methods defined which style applies to each keyword
+";s:5:"param";a:1:{i:0;a:2:{i:0;s:5:"array";i:1;s:35:"$keywords: Keywords and their count";}}s:6:"return";a:2:{i:0;s:5:"array";i:1;s:35:"Array with a style for each keyword";}}s:7:"content";s:0:"";s:12:"content_size";i:1748;s:13:"content_lines";i:54;s:6:"atLine";i:540;}}}s:14:"MD5_0acba67fb1";a:4:{s:8:"filename";s:32:"pi2/class.tx_vgetagcloud_pi2.php";s:8:"filesize";i:4423;s:6:"header";a:5:{s:4:"text";s:65:"
+
+Plugin 'A Better Tag Cloud' for the 'vge_tagcloud' extension.
+
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:6:"[type]";i:1;s:3:"...";}s:5:"other";a:3:{i:0;s:44:"@author		Ville de Genève <typo3@ville-ge.ch>";i:1;s:15:"@package		TYPO3";i:2;s:26:"@subpackage	tx_vgetagcloud";}s:11:"other_index";a:3:{s:7:"@author";a:1:{i:0;s:35:"Ville de Genève <typo3@ville-ge.ch>";}s:8:"@package";a:1:{i:0;s:6:"TYPO3 ";}s:11:"@subpackage";a:1:{i:0;s:15:"tx_vgetagcloud ";}}}s:3:"DAT";a:3:{i:1;a:8:{s:6:"header";s:47:"class tx_vgetagcloud_pi2 extends tslib_pibase {";s:5:"class";i:1;s:11:"parentClass";s:18:"tx_vgetagcloud_pi2";s:4:"cDat";a:3:{s:4:"text";s:257:"
+
+[CLASS/FUNCTION INDEX of SCRIPT]
+
+
+
+  48: class tx_vgetagcloud_pi2 extends tslib_pibase
+  62:     function main($content,$conf)
+ 122:     function init($conf)
+
+TOTAL FUNCTIONS: 2
+(This index is automatically created/updated by the extension "extdeveval")
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:6:"[type]";i:1;s:3:"...";}}s:7:"content";s:0:"";s:12:"content_size";i:269;s:13:"content_lines";i:5;s:6:"atLine";i:46;}i:3;a:4:{s:6:"header";s:31:"function main($content,$conf) {";s:11:"parentClass";s:18:"tx_vgetagcloud_pi2";s:4:"cDat";a:3:{s:4:"text";s:125:"
+
+This method display a list of pages according to a selected keyword and its associated pages
+as passed from the pi1 plugin
+";s:5:"param";a:2:{i:0;a:2:{i:0;s:6:"string";i:1;s:28:"$content: The plugin content";}i:1;a:2:{i:0;s:5:"array";i:1;s:31:"$conf: The plugin configuration";}}s:6:"return";a:2:{i:0;s:6:"string";i:1;s:44:"The content that is displayed on the website";}}s:6:"atLine";i:60;}i:5;a:7:{s:6:"header";s:22:"function init($conf) {";s:11:"parentClass";s:18:"tx_vgetagcloud_pi2";s:4:"cDat";a:3:{s:4:"text";s:47:"
+
+This method performs various initialisations
+";s:5:"param";a:1:{i:0;a:2:{i:0;s:5:"array";i:1;s:61:"$conf: plugin configuration, as received by the main() method";}}s:6:"return";a:2:{i:0;s:4:"void";i:1;s:0:"";}}s:7:"content";s:0:"";s:12:"content_size";i:375;s:13:"content_lines";i:14;s:6:"atLine";i:120;}}}}}
