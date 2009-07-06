@@ -31,6 +31,7 @@ require_once(PATH_tslib.'class.tslib_pibase.php');
  * @package		TYPO3
  * @subpackage	tx_vgetagcloud
  *
+ * $Id$
  */
 /**
  * [CLASS/FUNCTION INDEX of SCRIPT]
@@ -84,9 +85,9 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 
 				if (isset($values['where'])) {
 					if (!empty($whereClause)) $whereClause .= ' AND';
-					$whereClause .= ' ('.$values['where'].')';
+					$whereClause .= ' (' . $values['where'] . ')';
 				}
-				$result = $GLOBALS['TYPO3_DB']->exec_SELECTquery($values['table'].'.*', $values['table'], $whereClause);
+				$result = $GLOBALS['TYPO3_DB']->exec_SELECTquery($values['table'] . '.*', $values['table'], $whereClause);
 
 // Get keywords and merge with existing keywords
 
@@ -97,9 +98,9 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 			$whereClause = $this->buildCondition($this->conf['referenceTable']);
 			if (isset($this->conf['addWhere'])) {
 				if (!empty($whereClause)) $whereClause .= ' AND';
-				$whereClause .= ' ('.$this->conf['addWhere'].')';
+				$whereClause .= ' (' . $this->conf['addWhere'] . ')';
 			}
-			$result = $GLOBALS['TYPO3_DB']->exec_SELECTquery($this->conf['referenceTable'].'.*', $this->conf['referenceTable'], $whereClause);
+			$result = $GLOBALS['TYPO3_DB']->exec_SELECTquery($this->conf['referenceTable'] . '.*', $this->conf['referenceTable'], $whereClause);
 			$allKeywords = $this->getKeywords($result, $this->conf['referenceTable'], $this->conf['referenceFields']);
 		}
 
