@@ -240,7 +240,7 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 
 // Get all pages that are not in menu
 
-			$output = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('uid','pages',"nav_hide = '1'");
+			$output = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('uid', 'pages', "nav_hide = '1'");
 			if (is_array($output)) {
 				$excludePages = array();
 
@@ -252,13 +252,13 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 
 // Explode the list of page to explore so as to be able to diff the 2 arrays
 
-				$selectedPages = t3lib_div::trimExplode(',',$pages,1);
+				$selectedPages = t3lib_div::trimExplode(',', $pages, 1);
 
 // Use diff to exclude the "not in menu" pages from the list of pages to explore
 // and redefine the list of pages as a comma-separated list of uid's
 
-				$includedPages = array_diff($selectedPages,$excludePages);
-				$pages = implode(',',$includedPages);
+				$includedPages = array_diff($selectedPages, $excludePages);
+				$pages = implode(',', $includedPages);
 			}
 		}
 
@@ -268,13 +268,13 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 		$condition = '';
 		if (!empty($pages)) {
 			if ($referenceTable == 'pages') {
-				$condition = 'uid IN ('.$pages.')';
+				$condition = 'uid IN (' . $pages . ')';
 				$this->pageIdField = 'uid'; // Store for later reference
 			}
 			else {
 				$fields = array_keys($GLOBALS['TYPO3_DB']->admin_get_fields($referenceTable));
 				if (in_array('pid',$fields)) { // Use pid condition only if reference table has pid field :-)
-					$condition = 'pid IN ('.$pages.')';
+					$condition = 'pid IN (' . $pages . ')';
 					$this->pageIdField = 'pid'; // Store for later reference
 				}
 			}
@@ -300,7 +300,7 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 		if ($referenceTable != 'pages') {
 			if (!empty($tableTCA['ctrl']['languageField'])) {
 				if (isset($GLOBALS['TSFE']->sys_language_contentOL) && isset($tableTCA['ctrl']['transOrigPointerField'])) {
-					$languageCondition = $tableTCA['ctrl']['languageField'].' IN (0,-1)'; // Default language and "all" language
+					$languageCondition = $tableTCA['ctrl']['languageField'] . ' IN (0,-1)'; // Default language and "all" language
 
 	// If current language is not default, select elements that exist only for current language
 	// That means elements that exist for current language but have no parent element
