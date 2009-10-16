@@ -22,7 +22,7 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-require_once(PATH_tslib.'class.tslib_pibase.php');
+require_once(PATH_tslib . 'class.tslib_pibase.php');
 
 /**
  * Display a (better) tag cloud for the 'vge_tagcloud' extension.
@@ -32,27 +32,6 @@ require_once(PATH_tslib.'class.tslib_pibase.php');
  * @subpackage	tx_vgetagcloud
  *
  * $Id$
- */
-/**
- * [CLASS/FUNCTION INDEX of SCRIPT]
- *
- *
- *
- *   56: class tx_vgetagcloud_pi1 extends tslib_pibase
- *   72:     function main($content, $conf)
- *  127:     function init($conf)
- *  173:     function externalInit($conf, $cObj)
- *  185:     function buildCondition($referenceTable)
- *  333:     function getKeywords($result, $referenceTable, $referenceFields)
- *  448:     function countKeywords($keywords)
- *  467:     function sortAndCapKeywords($keywords)
- *  520:     function generateCloud($keywords)
- *  586:     function sortKeywords($keywords)
- *  624:     function calculateStyles($keywords)
- *
- * TOTAL FUNCTIONS: 10
- * (This index is automatically created/updated by the extension "extdeveval")
- *
  */
 class tx_vgetagcloud_pi1 extends tslib_pibase {
 	var $prefixId      = 'tx_vgetagcloud_pi1';		// Same as class name
@@ -73,55 +52,50 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 	function main($content, $conf) {
 		$this->init($conf);
 
-// Get all keywords
-// If several tables were defined per TypoScript, loop on those tables. Otherwise just get the keywords from the reference table
-
+			// Get all keywords
+			// If several tables were defined per TypoScript, loop on those tables. Otherwise just get the keywords from the reference table
 		if (isset($this->conf['references.'])) { // Array of reference tables
 			$allKeywords = array();
-			foreach ($this->conf['references.'] as $key => $values) {
+			foreach ($this->conf['references.'] as $values) {
 				$whereClause = $this->buildCondition($values['table']);
 
-// Add specific where clause, if defined
-
+					// Add specific where clause, if defined
 				if (isset($values['where'])) {
 					if (!empty($whereClause)) $whereClause .= ' AND';
 					$whereClause .= ' (' . $values['where'] . ')';
 				}
 				$result = $GLOBALS['TYPO3_DB']->exec_SELECTquery($values['table'] . '.*', $values['table'], $whereClause);
 
-// Get keywords and merge with existing keywords
-
+					// Get keywords and merge with existing keywords
 				$allKeywords = array_merge($allKeywords, $this->getKeywords($result, $values['table'], $values['fields']));
 			}
-		}
-		else { // Single reference table
+		} else {
+			// Single reference table
+
 			$whereClause = $this->buildCondition($this->conf['referenceTable']);
 			if (isset($this->conf['addWhere'])) {
-				if (!empty($whereClause)) $whereClause .= ' AND';
+				if (!empty($whereClause)) {
+					$whereClause .= ' AND';
+				}
 				$whereClause .= ' (' . $this->conf['addWhere'] . ')';
 			}
 			$result = $GLOBALS['TYPO3_DB']->exec_SELECTquery($this->conf['referenceTable'] . '.*', $this->conf['referenceTable'], $whereClause);
 			$allKeywords = $this->getKeywords($result, $this->conf['referenceTable'], $this->conf['referenceFields']);
 		}
 
-// Count the keywords
-
+			// Count the keywords
 		$countedKeywords = $this->countKeywords($allKeywords);
 
-// Apply sorting and limit
-
+			// Apply sorting and limit
 		$finalKeywords = $this->sortAndCapKeywords($countedKeywords);
 
-// Generate the tag cloud
-
+			// Generate the tag cloud
 		$content = $this->generateCloud($finalKeywords);
 
-// Wrap the whole result, with baseWrap if defined, else with standard pi_wrapInBaseClass() call
-
+			// Wrap the whole result, with baseWrap if defined, else with standard pi_wrapInBaseClass() call
 		if (isset($this->conf['baseWrap.'])) {
-			return $this->cObj->stdWrap($content,$this->conf['baseWrap.']);
-		}
-		else {
+			return $this->cObj->stdWrap($content, $this->conf['baseWrap.']);
+		} else {
 			return $this->pi_wrapInBaseClass($content);
 		}
 	}
@@ -133,26 +107,24 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 	 * @return	void
 	 */
 	function init($conf) {
-		$this->conf = $conf; // Base configuration is equal the the plugin's TS setup
+			// Base configuration is equal the the plugin's TS setup
+		$this->conf = $conf;
 
-// Load the flexform and loop on all its values to override TS setup values
-// Some properties use a different test (more strict than not empty) and yet some others no test at all
-
+			// Load the flexform and loop on all its values to override TS setup values
+			// Some properties use a different test (more strict than not empty) and yet some others no test at all
 		$this->pi_initPIflexForm();
 		if (is_array($this->cObj->data['pi_flexform']['data'])) {
 			foreach ($this->cObj->data['pi_flexform']['data'] as $sheet => $langData) {
-				foreach ($langData as $lang => $fields) {
+				foreach ($langData as $fields) {
 					foreach ($fields as $field => $value) {
 						$value = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], $field, $sheet);
 						if ($field == 'caseHandling') {
 							$this->conf[$field] = $value;
-						}
-						elseif ($field == 'separator') {
+						} elseif ($field == 'separator') {
 							if ($value !== '') {
 								$this->conf[$field] = $value;
 							}
-						}
-						else {
+						} else {
 							if (!empty($value)) {
 								$this->conf[$field] = $value;
 							}
@@ -162,25 +134,26 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 			}
 		}
 
-// Handle local TypoScript override
-
+			// Handle local TypoScript override
 		if (!empty($this->conf['flexformTS'])) {
-			$typoscript = t3lib_TSparser::checkIncludeLines($this->conf['flexformTS']); // Check for file inclusion
-	        $parseObj = t3lib_div::makeInstance('t3lib_TSparser'); // Instantiate a TS parser
-	   	    $parseObj->parse($typoscript); // Parse the local TypoScript
-	   	    $this->conf = t3lib_div::array_merge_recursive_overrule($this->conf, $parseObj->setup); // Merge with local configuration
+				// Check for file inclusion
+			$typoscript = t3lib_TSparser::checkIncludeLines($this->conf['flexformTS']);
+				// Instantiate a TS parser
+	        $parseObj = t3lib_div::makeInstance('t3lib_TSparser');
+				// Parse the local TypoScript
+	   	    $parseObj->parse($typoscript);
+				// Merge with local configuration
+	   	    $this->conf = t3lib_div::array_merge_recursive_overrule($this->conf, $parseObj->setup);
 		}
 
-// Handle splitChar as a stdWrap property
-
+			// Handle splitChar as a stdWrap property
 		if (isset($this->conf['splitChar.'])) {
 			$this->conf['splitChar'] = $this->cObj->stdWrap($this->conf['splitChar'], $this->conf['splitChar.']);
 		}
 
-// Start page (and recursive exploring of page tree beneath it) may come from TS
-// or from a selection in the "startingpoint" form field
-// If the start page is still empty after all that, use current page as starting point
-
+			// Start page (and recursive exploring of page tree beneath it) may come from TS
+			// or from a selection in the "startingpoint" form field
+			// If the start page is still empty after all that, use current page as starting point
 		if (isset($conf['startPage.'])) {
 			$this->conf['startPage'] = $this->cObj->stdWrap('', $conf['startPage.']);
 		}
@@ -216,136 +189,132 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 	 * @return	string		part of a WHERE clause
 	 */
 	function buildCondition($referenceTable) {
+		$tableTCA = array();
 		if (isset($GLOBALS['TCA'][$referenceTable])) {
 			$tableTCA = $GLOBALS['TCA'][$referenceTable];
 		}
-		else {
-			$tableTCA = array();
-		}
 
-// Get the list of pages to explore, if any
-
+			// Get the list of pages to explore, if any
 		$pages = '';
 		if (!empty($this->conf['startPage'])) {
 			if (!empty($this->conf['recursive'])) {
 				$pages = $this->pi_getPidList($this->conf['startPage'], $this->conf['recursive']);
-			}
-			else {
+			} else {
 				$pages = $this->conf['startPage'];
 			}
 		}
 
-// Add exclusion of "not in menu" pages if includeNotInMenu = 0
-
+			// Add exclusion of "not in menu" pages if includeNotInMenu = 0
 		if (empty($this->conf['includeNotInMenu'])) {
 
-// Get all pages that are not in menu
-
+				// Get all pages that are not in menu
 			$output = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('uid', 'pages', "nav_hide = '1'");
 			if (is_array($output)) {
 				$excludePages = array();
 
-// Extract the uid of the resulting pages
-
+					// Extract the uid of the resulting pages
 				foreach ($output as $row) {
 					$excludePages[] = $row['uid'];
 				}
 
-// Explode the list of page to explore so as to be able to diff the 2 arrays
-
+					// Explode the list of page to explore so as to be able to diff the 2 arrays
 				$selectedPages = t3lib_div::trimExplode(',', $pages, 1);
 
-// Use diff to exclude the "not in menu" pages from the list of pages to explore
-// and redefine the list of pages as a comma-separated list of uid's
-
+					// Use diff to exclude the "not in menu" pages from the list of pages to explore
+					// and redefine the list of pages as a comma-separated list of uid's
 				$includedPages = array_diff($selectedPages, $excludePages);
 				$pages = implode(',', $includedPages);
 			}
 		}
 
-// If at least one page is defined, assemble it into a where clause
-// Note that this differs depending on whether we are interrogating the pages table or some other table
-
+			// If at least one page is defined, assemble it into a where clause
+			// Note that this differs depending on whether we are interrogating the pages table or some other table
 		$condition = '';
 		if (!empty($pages)) {
 			if ($referenceTable == 'pages') {
 				$condition = 'uid IN (' . $pages . ')';
-				$this->pageIdField = 'uid'; // Store for later reference
-			}
-			else {
+					// Store for later reference
+				$this->pageIdField = 'uid';
+			} else {
 				$fields = array_keys($GLOBALS['TYPO3_DB']->admin_get_fields($referenceTable));
-				if (in_array('pid',$fields)) { // Use pid condition only if reference table has pid field :-)
+					// Use pid condition only if reference table has pid field :-)
+				if (in_array('pid',$fields)) {
 					$condition = 'pid IN (' . $pages . ')';
-					$this->pageIdField = 'pid'; // Store for later reference
+						// Store for later reference
+					$this->pageIdField = 'pid';
 				}
 			}
 		}
 
-// If reference has a TCA definition, use it to add enable fields
-// Note: this is not necessary for the "pages" table, because it was already handled by the call to tslib_pibase::pi_getPidList()
-
+			// If reference has a TCA definition, use it to add enable fields
+			// Note: this is not necessary for the "pages" table, because it was already handled by the call to tslib_pibase::pi_getPidList()
 		if ($referenceTable != 'pages' && count($tableTCA) > 0) {
-			if (empty($condition)) $condition = '1 = 1'; // Prevent SQL syntax error
-			$condition .= ' '.$this->cObj->enableFields($referenceTable);
+			if (empty($condition)) {
+				$condition = '1 = 1'; // Prevent SQL syntax error
+			}
+			$condition .= ' ' . $this->cObj->enableFields($referenceTable);
 		}
 
-// Add selection of language (if activated)
-// There are two main cases:
-//
-//	-	if the overlay mechanism is activated and the reference table has translation information,
-//		we must get the original elements and the translation will be overlaid afterwards
-//	-	if not, then we get directly the elements in the right language
-//
-// This is not done for the pages table, which has a different overlay mechanism
-
+			// Add selection of language (if activated)
+			// There are two main cases:
+			//
+			//	-	if the overlay mechanism is activated and the reference table has translation information,
+			//		we must get the original elements and the translation will be overlaid afterwards
+			//	-	if not, then we get directly the elements in the right language
+			//
+			// This is not done for the pages table, which has a different overlay mechanism
 		if ($referenceTable != 'pages') {
 			if (!empty($tableTCA['ctrl']['languageField'])) {
+				$languageCondition = '';
 				if (isset($GLOBALS['TSFE']->sys_language_contentOL) && isset($tableTCA['ctrl']['transOrigPointerField'])) {
 					$languageCondition = $tableTCA['ctrl']['languageField'] . ' IN (0,-1)'; // Default language and "all" language
 
-	// If current language is not default, select elements that exist only for current language
-	// That means elements that exist for current language but have no parent element
-
+						// If current language is not default, select elements that exist only for current language
+						// That means elements that exist for current language but have no parent element
 					if ($GLOBALS['TSFE']->sys_language_content > 0) {
 						$languageCondition .= ' OR ('.$tableTCA['ctrl']['languageField']." = '".$GLOBALS['TSFE']->sys_language_content."' AND ".$tableTCA['ctrl']['transOrigPointerField']." = '0')";
 						$this->doLangOverlay = true; // Set flag to activate language overlay later
 					}
 				}
 				else {
-					$languageCondition = $tableTCA['ctrl']['languageField']." = '".$GLOBALS['TSFE']->sys_language_content."'";
+					$languageCondition = $tableTCA['ctrl']['languageField'] . " = '" . $GLOBALS['TSFE']->sys_language_content . "'";
 				}
-				if (!empty($condition)) $condition .= ' AND ';
-				$condition .= '('.$languageCondition.')';
+				if (!empty($condition)) {
+					$condition .= ' AND ';
+				}
+				$condition .= '(' . $languageCondition . ')';
+			}
+		} else {
+			if ($GLOBALS['TSFE']->sys_language_content > 0) {
+				$this->doLangOverlay = true; // Set flag to activate language overlay later
 			}
 		}
-		else {
-			if ($GLOBALS['TSFE']->sys_language_content > 0) $this->doLangOverlay = true; // Set flag to activate language overlay later
-		}
 
-// Add selection of workspace (if activated)
-
+			// Add selection of workspace (if activated)
 		if (!empty($tableTCA['ctrl']['versioningWS'])) {
-			if (!empty($condition)) $condition .= ' AND ';
+			if (!empty($condition)) {
+				$condition .= ' AND ';
+			}
 			if (empty($GLOBALS['TSFE']->workspacePreview)) {
 				$condition .= " t3ver_wsid = '0'";
-			}
-			else {
-				$condition .= ' t3ver_wsid IN (0,'.$GLOBALS['TSFE']->workspacePreview.')';
+			} else {
+				$condition .= ' t3ver_wsid IN (0,' . $GLOBALS['TSFE']->workspacePreview . ')';
 			}
 		}
 
-// Add specific exclude conditions
-
+			// Add specific exclude conditions
 		if (isset($this->conf['exclude.'][$referenceTable.'.'])) {
 			foreach ($this->conf['exclude.'][$referenceTable.'.'] as $field => $valuesList) {
-				if (!empty($condition)) $condition .= ' AND ';
+				if (!empty($condition)) {
+					$condition .= ' AND ';
+				}
 				$condition .= $referenceTable.'.'.$field;
-				$values = t3lib_div::trimExplode(',',$valuesList,1);
+				$values = t3lib_div::trimExplode(',', $valuesList, 1);
 				if (count($values) == 1) {
-					$condition .= " <> '".$values[0]."'";
+					$condition .= " <> '" . $values[0] . "'";
 				}
 				else {
-					$condition .= " NOT IN ('".implode("', '",$values)."')";
+					$condition .= " NOT IN ('" . implode("', '", $values) . "')";
 				}
 			}
 		}
@@ -366,14 +335,12 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 	function getKeywords($result, $referenceTable, $referenceFields) {
 		$allKeywords = array();
 
-// Get the list of fields to retrieve keywords from
-
+			// Get the list of fields to retrieve keywords from
 		$fields = t3lib_div::trimExplode(',', $referenceFields, 1);
 
-// Load data extractor hooks, if any
-// Data extractor hooks make it possible to use other methods of extracting keywords than the default one
-// So note that data extractors are not called *on top* of the normal method, but *instead*
-
+			// Load data extractor hooks, if any
+			// Data extractor hooks make it possible to use other methods of extracting keywords than the default one
+			// So note that data extractors are not called *on top* of the normal method, but *instead*
 		$dataExtractors = array();
 		if (is_array($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][$this->prefixId]['extractKeywords'])) {
 			foreach($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][$this->prefixId]['extractKeywords'] as $className) {
@@ -381,79 +348,81 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 			}
 		}
 
-// Set a boolean flag instead of testing inside every iteration below
-
+			// Set a boolean flag instead of testing inside every iteration below
 		$hasDataExtractors = count($dataExtractors) > 0;
 
-// Loop on all rows returned
+			// Loop on all rows returned
+		while (($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($result))) {
 
-		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($result)) {
-
-// If necessary overlay translations
-
+				// If necessary overlay translations
 			if ($this->doLangOverlay) {
 
-// For pages, the specific overlay method must be called
-
 				if ($referenceTable == 'pages') {
+					// For pages, the specific overlay method must be called
+
 					$row = $GLOBALS['TSFE']->sys_page->getPageOverlay($row);
-					if (!isset($row['_PAGES_OVERLAY'])) continue; // No overlay was found, skip page
-				}
+						// No overlay was found, skip page
+					if (!isset($row['_PAGES_OVERLAY'])) {
+						continue;
+					}
+				} else {
+					// For other kind of records, use generic overlay method
 
-// For other kind of records, use generic overlay method
-
-				else {
 					$row = $GLOBALS['TSFE']->sys_page->getRecordOverlay($referenceTable, $row, $GLOBALS['TSFE']->sys_language_content, $GLOBALS['TSFE']->sys_language_contentOL);
 				}
 			}
-			if (!empty($row)) { // Row may be unset if no translation was found and overlay mode is hideNonTranslated
+				// Row may be unset if no translation was found and overlay mode is hideNonTranslated
+			if (!empty($row)) {
 				foreach ($fields as $aField) {
 					if (!empty($row[$aField])) {
 						$keywords = array();
 
-// If there are some data extraction hooks registered, use them instead of normal methods
-
 						if ($hasDataExtractors) {
+							// If there are some data extraction hooks registered, use them instead of normal methods
+
 							foreach($dataExtractors as $aDataExtractors) {
 								$aDataExtractors->extractKeywords($row[$aField], $this->conf, $keywords);
 							}
-						}
+						} elseif (empty($this->conf['splitChar'])) {
+							// If there's no splitChar define, we use word boundaries
 
-// If there's no splitChar define, we use word boundaries
-
-						elseif (empty($this->conf['splitChar'])) {
-							$rawKeywords = preg_split('/'.addcslashes($this->conf['splitWords'],"'/").'/',strip_tags($row[$aField]));
+							$rawKeywords = preg_split('/' . addcslashes($this->conf['splitWords'], "'/") . '/', strip_tags($row[$aField]));
 							foreach ($rawKeywords as $theKeyword) { // Exclude empty or blank strings
 								$theKeyword = trim($theKeyword);
-								if (!empty($theKeyword)) $keywords[] = $theKeyword;
+								if (!empty($theKeyword)) {
+									$keywords[] = $theKeyword;
+								}
 							}
-							if ($this->conf['uniqueKeywordsPerItem']) $keywords = array_unique($keywords);
+							if ($this->conf['uniqueKeywordsPerItem']) {
+								$keywords = array_unique($keywords);
+							}
+						} else {
+							// Otherwise, use the defined splitChar
+
+							$keywords = t3lib_div::trimExplode($this->conf['splitChar'], $row[$aField],1);
+							if ($this->conf['uniqueKeywordsPerItem']) {
+								$keywords = array_unique($keywords);
+							}
 						}
 
-// Otherwise, use the defined splitChar
-
-						else {
-							$keywords = t3lib_div::trimExplode($this->conf['splitChar'],$row[$aField],1);
-							if ($this->conf['uniqueKeywordsPerItem']) $keywords = array_unique($keywords);
-						}
-
-// Store keywords in the global keyword array, appyling case transformation if necessary
-
+							// Store keywords in the global keyword array, appyling case transformation if necessary
 						foreach ($keywords as $aKeyword) {
 							if ($this->conf['caseHandling'] == 'upper') {
-								$aKeyword = $GLOBALS['TSFE']->csConvObj->conv_case($GLOBALS['TSFE']->renderCharset,$aKeyword,'toUpper');
-							}
-							elseif ($this->conf['caseHandling'] == 'lower') {
-								$aKeyword = $GLOBALS['TSFE']->csConvObj->conv_case($GLOBALS['TSFE']->renderCharset,$aKeyword,'toLower');
+								$aKeyword = $GLOBALS['TSFE']->csConvObj->conv_case($GLOBALS['TSFE']->renderCharset, $aKeyword,'toUpper');
+							} elseif ($this->conf['caseHandling'] == 'lower') {
+								$aKeyword = $GLOBALS['TSFE']->csConvObj->conv_case($GLOBALS['TSFE']->renderCharset, $aKeyword,'toLower');
 							}
 							$allKeywords[] = $aKeyword;
 
-// If there's a page id to remember, store it now
-// making sure array is set and that no page id is stored twice for a given keyword
-
+								// If there's a page id to remember, store it now
+								// making sure array is set and that no page id is stored twice for a given keyword
 							if (!empty($this->pageIdField)) {
-								if (!isset($this->allKeywordPages[$aKeyword])) $this->allKeywordPages[$aKeyword] = array();
-								if (!in_array($row[$this->pageIdField],$this->allKeywordPages[$aKeyword])) $this->allKeywordPages[$aKeyword][] = $row[$this->pageIdField];
+								if (!isset($this->allKeywordPages[$aKeyword])) {
+									$this->allKeywordPages[$aKeyword] = array();
+								}
+								if (!in_array($row[$this->pageIdField], $this->allKeywordPages[$aKeyword])) {
+									$this->allKeywordPages[$aKeyword][] = $row[$this->pageIdField];
+								}
 							}
 						}
 					}
@@ -461,8 +430,7 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 			}
 		}
 
-// Hook for post-processing the raw list of keywords before returning it
-
+			// Hook for post-processing the raw list of keywords before returning it
 		if (is_array($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][$this->prefixId]['postProcessRawKeywords'])) {
 			foreach($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][$this->prefixId]['postProcessRawKeywords'] as $className) {
 				$postProcessor = &t3lib_div::getUserObj($className);
@@ -485,8 +453,7 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 		foreach ($keywords as $aKeyword) {
 			if (isset($countedKeywords[$aKeyword])) {
 				$countedKeywords[$aKeyword]++;
-			}
-			else {
+			} else {
 				$countedKeywords[$aKeyword] = 1;
 			}
 		}
@@ -500,28 +467,29 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 	 * @return	array		Array of keywords, sorted and limited
 	 */
 	function sortAndCapKeywords($keywords) {
+		$slicedKeywords = array();
 
-// Make sure some default values are set for sorting
+			// Make sure some default values are set for sorting
+		if (empty($this->conf['sorting'])) {
+			$this->conf['sorting'] == 'natural';
+		}
+		if (empty($this->conf['sortOrder'])) {
+			$this->conf['sortOrder'] == 'asc';
+		}
 
-		if (empty($this->conf['sorting'])) $this->conf['sorting'] == 'natural';
-		if (empty($this->conf['sortOrder'])) $this->conf['sortOrder'] == 'asc';
-
-// Sort keywords
-
+			// Sort keywords
 		switch ($this->conf['sorting']) {
 			case 'alpha': // Alphabetical sorting is equivalent to sorting on keys
 				if ($this->conf['sortOrder'] == 'desc') {
 					krsort($keywords);
-				}
-				else {
+				} else {
 					ksort($keywords);
 				}
 				break;
 			case 'weight': // Sorting by weight is equivalent to sorting on values
 				if ($this->conf['sortOrder'] == 'desc') {
 					arsort($keywords);
-				}
-				else {
+				} else {
 					asort($keywords);
 				}
 				break;
@@ -529,18 +497,18 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 				break;
 		}
 
-// Apply limit to number of keywords
-
+			// Apply limit to number of keywords
 		if (empty($this->conf['maxWords'])) { // No value, take all keywords
 			$slicedKeywords = $keywords;
-		}
-		else {
+		} else {
 			$slicedKeywords = array();
 			$counter = 0;
 			foreach($keywords as $aKeyword => $aWeight) {
 				$slicedKeywords[$aKeyword] = $aWeight;
 				$counter++;
-				if ($counter == $this->conf['maxWords']) break;
+				if ($counter == $this->conf['maxWords']) {
+					break;
+				}
 			}
 		}
 		return $slicedKeywords;
@@ -616,27 +584,30 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 	 */
 	function sortKeywords($keywords) {
 
-// Make sure some default values are set for sorting
+			// Make sure some default values are set for sorting
+		if (empty($this->conf['sortingForDisplay'])) {
+			$this->conf['sortingForDisplay'] == 'natural';
+		}
+		if (empty($this->conf['sortOrderForDisplay'])) {
+			$this->conf['sortOrderForDisplay'] == 'asc';
+		}
 
-		if (empty($this->conf['sortingForDisplay'])) $this->conf['sortingForDisplay'] == 'natural';
-		if (empty($this->conf['sortOrderForDisplay'])) $this->conf['sortOrderForDisplay'] == 'asc';
-
-// Sort keywords
-
+			// Sort keywords
 		switch ($this->conf['sortingForDisplay']) {
-			case 'alpha': // Alphabetical sorting is equivalent to sorting on keys
+				// Alphabetical sorting is equivalent to sorting on keys
+			case 'alpha':
 				if ($this->conf['sortOrderForDisplay'] == 'desc') {
 					krsort($keywords);
-				}
-				else {
+				} else {
 					ksort($keywords);
 				}
 				break;
-			case 'weight': // Sorting by weight is equivalent to sorting on values
+
+				// Sorting by weight is equivalent to sorting on values
+			case 'weight':
 				if ($this->conf['sortOrderForDisplay'] == 'desc') {
 					arsort($keywords);
-				}
-				else {
+				} else {
 					asort($keywords);
 				}
 				break;
@@ -655,18 +626,18 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 	function calculateStyles($keywords) {
 		$styles = array();
 
-// Make sure there's a default value
+			// Make sure there's a default value
+		if (empty($this->conf['renderingType'])) {
+			$this->conf['renderingStyle'] = 'weight';
+		}
 
-		if (empty($this->conf['renderingType'])) $this->conf['renderingStyle'] = 'weight';
-
-// Get smallest and largest weight among keywords and calculate difference
-
+			// Get smallest and largest weight among keywords and calculate difference
 		$smallestWeight = min($keywords);
 		$largestWeight = max($keywords);
 		$deltaWeight = $largestWeight - $smallestWeight;
 
 		if ($this->conf['renderingType'] == 'styles') {
-			$styleList = t3lib_div::trimExplode(',',$this->conf['styles'],1);
+			$styleList = t3lib_div::trimExplode(',', $this->conf['styles'],1);
 			$numStyles = count($styleList);
 			if ($numStyles > 0) { // Calculate styles only if at least one was defined :-)
 				$weightIncrement = doubleval($deltaWeight) / doubleval($numStyles);
@@ -674,8 +645,7 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 					$weightDifference = $count - $smallestWeight;
 					if ($weightIncrement == 0) {
 						$styleIndex = 0;
-					}
-					else {
+					} else {
 						$incrementMultiplier = $weightDifference / $weightIncrement;
 						$styleIndex = ceil($incrementMultiplier) - 1;
 						if ($styleIndex < 0) $styleIndex = 0;
@@ -683,16 +653,14 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 					$styles[$aKeyword] = $styleList[$styleIndex];
 				}
 			}
-		}
-		else {
+		} else {
 			$minRelWeight = $this->conf['minWeight'];
 			$maxRelWeight = $this->conf['maxWeight'];
 			$deltaRelWeight = $maxRelWeight - $minRelWeight;
 			foreach ($keywords as $aKeyword => $count) {
 				if ($deltaWeight == 0) {
 					$size = $minRelWeight;
-				}
-				else {
+				} else {
 					$size = $minRelWeight + ((($count - $smallestWeight) / $deltaWeight) * $deltaRelWeight);
 				}
 				$styles[$aKeyword] = round($size);
