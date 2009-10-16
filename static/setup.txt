@@ -74,6 +74,11 @@ plugin.tx_vgetagcloud_pi1 {
 		}
 	}
 
+// Default stdWrap for individual tags when rendering type is styles
+
+	tagWrapStyles < .tagWrap
+	tagWrapStyles.dataWrap = <li class="{field:tag_style}">|</li>
+
 // Default stdWrap for the whole cloud
 
 	cloudWrap.wrap = <!--TYPO3SEARCH_end--><ul>|</ul><div style="clear:both;"></div><!--TYPO3SEARCH_begin-->

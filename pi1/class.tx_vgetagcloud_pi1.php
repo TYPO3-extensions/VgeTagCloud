@@ -554,12 +554,10 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 	 */
 	function generateCloud($keywords) {
 
-// Sort the keywords for display
-
+			// Sort the keywords for display
 		$keywords = $this->sortKeywords($keywords);
 
-// Hook for applying some last minute algorithm to the keywords
-
+			// Hook for applying some last minute algorithm to the keywords
 		if (is_array($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][$this->prefixId]['postProcessFinalKeywords'])) {
 			foreach($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][$this->prefixId]['postProcessFinalKeywords'] as $className) {
 				$postProcessor = &t3lib_div::getUserObj($className);
@@ -567,12 +565,10 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 			}
 		}
 
-// Calculate the styles for each keyword
-
+			// Calculate the styles for each keyword
 		$styles = $this->calculateStyles($keywords);
 
-// Load data processor hooks, if any
-
+			// Load data processor hooks, if any
 		$dataProcessors = array();
 		if (is_array($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][$this->prefixId]['processTagData'])) {
 			foreach($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][$this->prefixId]['processTagData'] as $className) {
@@ -580,34 +576,32 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 			}
 		}
 
-// Assemble the HTML code for the tag cloud
-
+			// Assemble the HTML code for the tag cloud
 		$tags = array();
-		$counter = 1; // The counter is used to generated a unique ID number for each keyword
+			// The counter is used to generated a unique ID number for each keyword
+		$counter = 1;
+		$tagWrapConfiguration = ($this->conf['renderingType'] == 'styles') ? $this->conf['tagWrapStyles.'] : $this->conf['tagWrap.'];
 		foreach ($keywords as $aKeyword => $count) {
 
-// Load all the specific tag cloud-related values into the cObj data
-
+				// Load all the specific tag cloud-related values into the cObj data
 			$this->cObj->data['tag_keyword'] = $aKeyword;
 			$this->cObj->data['tag_link'] = $this->conf['targetPage'];
 			$this->cObj->data['tag_weight'] = $count;
 			$this->cObj->data['tag_style'] = $styles[$aKeyword];
 			$this->cObj->data['tag_id'] = $counter;
-			$this->cObj->data['tag_pages'] = (isset($this->allKeywordPages[$aKeyword])) ? implode('_',$this->allKeywordPages[$aKeyword]): '';
+			$this->cObj->data['tag_pages'] = (isset($this->allKeywordPages[$aKeyword])) ? implode('_', $this->allKeywordPages[$aKeyword]): '';
 
-// Call hooks to process tag data, if any
-
+				// Call hooks to process tag data, if any
 			foreach($dataProcessors as $aDataProcessors) {
 				$aDataProcessors->processTagData($this->cObj->data);
 			}
 
-// Assemble the tag
-
-			$tags[] = $this->cObj->stdWrap($aKeyword,$this->conf['tagWrap.']);
+				// Assemble the tag
+			$tags[] = $this->cObj->stdWrap($aKeyword, $tagWrapConfiguration);
 			$counter++;
 		}
-		$allTags = implode($this->conf['separator'],$tags);
-		$cloud = $this->cObj->stdWrap($allTags,$this->conf['cloudWrap.']);
+		$allTags = implode($this->conf['separator'], $tags);
+		$cloud = $this->cObj->stdWrap($allTags, $this->conf['cloudWrap.']);
 		return $cloud;
 	}
 

@@ -1,6 +1,7 @@
 09-10-16 Francois Suter <typo3@cobweb.ch>
 
 	* Improved TS in static templates to provide properly sanitized output, solves #3154
+	* Added separate renderings for tags depending on method (weights or styles), solves #3155
 
 08-07-20 Francois Suter <typo3@cobweb.ch>
 
