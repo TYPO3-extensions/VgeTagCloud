@@ -1,3 +1,7 @@
+09-10-16 Francois Suter <typo3@cobweb.ch>
+
+	* Improved TS in static templates to provide properly sanitized output, solves #3154
+
 08-07-20 Francois Suter <typo3@cobweb.ch>
 
 	* Made the splitChar property into a stdWrap

@@ -51,14 +51,25 @@ plugin.tx_vgetagcloud_pi1 {
 	sortingForDisplay = alpha
 	sortOrderForDisplay = asc
 
-// Default stdWrap for individual tags
+// Default stdWrap for individual tags when rendering type is weights
 
 	tagWrap {
+		htmlSpecialChars = 1
 		dataWrap = <li style="font-size: {field:tag_style}%">|</li>
 		typolink {
 			parameter.data = field:tag_link
-			additionalParams.dataWrap = &tx_vgetagcloud_pi2[pages]={field:tag_pages}&tx_vgetagcloud_pi2[keyword]={field:tag_keyword}
-			ATagParams.dataWrap = id="tag{field:tag_id}" title="{field:tag_keyword}"
+			additionalParams.cObject = TEXT
+			additionalParams.cObject {
+				field = tag_keyword
+				rawUrlEncode = 1
+				dataWrap = &tx_vgetagcloud_pi2[pages]={field:tag_pages}&tx_vgetagcloud_pi2[keyword]=|
+			}
+			ATagParams.cObject = TEXT
+			ATagParams.cObject {
+				field = tag_keyword
+				htmlSpecialChars = 1
+				dataWrap = id="tag{field:tag_id}" title="|"
+			}
 			useCacheHash = 1
 		}
 	}
@@ -96,7 +107,10 @@ plugin.tx_vgetagcloud_pi1 {
  */
  
 plugin.tx_vgetagcloud_pi2 {
-	keyword.wrap = <strong>|</strong>
+	keyword {
+		htmlSpecialChars = 1
+		wrap = <strong>|</strong>
+	}
 	message.wrap = <p>|</p>
 	results = HMENU
 	results {
@@ -105,6 +119,7 @@ plugin.tx_vgetagcloud_pi2 {
 		1 = TMENU
 		1 {
 			NO.allWrap = <li>|</li>
+			NO.stdWrap.htmlSpecialChars = 1
 		}
 		wrap = <ul>|</ul>
 	}
