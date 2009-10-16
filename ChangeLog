@@ -1,60 +1,60 @@
-09-10-16 Francois Suter <typo3@cobweb.ch>
+2009-10-16 Francois Suter <typo3@cobweb.ch>
 
 	* Improved TS in static templates to provide properly sanitized output, solves #3154
 	* Added separate renderings for tags depending on method (weights or styles), solves #3155
 
-08-07-20 Francois Suter <typo3@cobweb.ch>
+2008-07-20 Francois Suter <typo3@cobweb.ch>
 
 	* Made the splitChar property into a stdWrap
 	* Added RealURL autoconfiguration (thanks to Philipp Dubrov)
 	* Minor code clean up
 
-08-06-02 Francois Suter <typo3@cobweb.ch>
+2008-06-02 Francois Suter <typo3@cobweb.ch>
 
 	* Added the possibility to have unique keywords for each item considered by the tag cloud
 	* Added TypoScript field in FlexForm for local override
 	* Added the possibility to introduce additional SQL WHERE clause in TypoScript
 	* (all the above thanks to Tom Ruether, with modifications)
 
-08-05-19 Francois Suter <typo3@cobweb.ch>
+2008-05-19 Francois Suter <typo3@cobweb.ch>
 
 	* Fixed default CSS bug for IE
 
-08-05-11 Francois Suter <typo3@cobweb.ch>
+2008-05-11 Francois Suter <typo3@cobweb.ch>
 
 	* Added the possibility of querying multiple tables (thanks to Mauro Lorenzutti)
 
-08-04-15 Francois Suter <typo3@cobweb.ch>
+2008-04-15 Francois Suter <typo3@cobweb.ch>
 
 	* Bugfix when setting case handling from FlexForm
 
-08-04-07 Francois Suter <typo3@cobweb.ch>
+2008-04-07 Francois Suter <typo3@cobweb.ch>
 
 	* Moved translations to the translation server
 
-08-03-02 Francois Suter <typo3@cobweb.ch>
+2008-03-02 Francois Suter <typo3@cobweb.ch>
 
 	* Added new hook for extracting keywords from database data
 	* Added new hook for manipulating cObj data (suggested with some code example by Marco Peemöller)
 
-08-02-23 Francois Suter <typo3@cobweb.ch>
+2008-02-23 Francois Suter <typo3@cobweb.ch>
 
 	* Bugfix (abusive use of workspace and localisation conditions) and clean up in SQL query
 	* Change to default setup for proper handling of cHash cache in pi2
 	* Added notes in manual about RealURL setup
 
-08-02-03 Francois Suter <typo3@cobweb.ch>
+2008-02-03 Francois Suter <typo3@cobweb.ch>
 
 	* Complete and improved German translation (thanks to Steffen Mueller)
 
-08-01-22 Francois Suter <typo3@cobweb.ch>
+2008-01-22 Francois Suter <typo3@cobweb.ch>
 
 	* Minor bugfix in German translation (thanks to Steffen Mueller)
 
-07-12-16 Francois Suter <typo3@cobweb.ch>
+2007-12-16 Francois Suter <typo3@cobweb.ch>
 
 	* Added German translation for pi2 (thanks to Martin Fitzel)
 
-07-12-11 Francois Suter <typo3@cobweb.ch>
+2007-12-11 Francois Suter <typo3@cobweb.ch>
 
 	* First public release
