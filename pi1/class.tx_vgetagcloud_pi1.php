@@ -227,6 +227,13 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 			}
 		}
 
+			// Hook for post-processing the list of pages
+		if (is_array($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][$this->prefixId]['postProcessPages'])) {
+			foreach($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][$this->prefixId]['postProcessPages'] as $className) {
+				$postProcessor = &t3lib_div::getUserObj($className);
+				$pages = $postProcessor->postProcessPages($pages, $this);
+			}
+		}
 			// If at least one page is defined, assemble it into a where clause
 			// Note that this differs depending on whether we are interrogating the pages table or some other table
 		$condition = '';
