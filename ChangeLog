@@ -4,6 +4,7 @@
 	* Added separate renderings for tags depending on method (weights or styles), solves #3155
 	* Added loading of start page into the cObj data, solves #3171
 	* Added hook for post-processing the list of pages to get the tags from, solves #3173
+	* Added test to skip tag cloud generation if there are no keywords, solves #3192
 
 2008-07-20 Francois Suter <typo3@cobweb.ch>
 

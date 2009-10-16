@@ -54,8 +54,8 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 
 			// Get all keywords
 			// If several tables were defined per TypoScript, loop on those tables. Otherwise just get the keywords from the reference table
+		$allKeywords = array();
 		if (isset($this->conf['references.'])) { // Array of reference tables
-			$allKeywords = array();
 			foreach ($this->conf['references.'] as $values) {
 				$whereClause = $this->buildCondition($values['table']);
 
@@ -540,45 +540,50 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 			}
 		}
 
-			// Calculate the styles for each keyword
-		$styles = $this->calculateStyles($keywords);
+			// Assemble the cloud only if there are any keywords left at this point
+		$cloud = '';
+		if (count($keywords) > 0) {
 
-			// Load data processor hooks, if any
-		$dataProcessors = array();
-		if (is_array($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][$this->prefixId]['processTagData'])) {
-			foreach($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][$this->prefixId]['processTagData'] as $className) {
-				$dataProcessors[] = &t3lib_div::getUserObj($className);
-			}
-		}
+				// Calculate the styles for each keyword
+			$styles = $this->calculateStyles($keywords);
 
-			// Assemble the HTML code for the tag cloud
-		$tags = array();
-			// The counter is used to generated a unique ID number for each keyword
-		$counter = 1;
-		$tagWrapConfiguration = ($this->conf['renderingType'] == 'styles') ? $this->conf['tagWrapStyles.'] : $this->conf['tagWrap.'];
-			// Load the start page into the cObj data
-		$this->cObj->data['tag_startpage'] = $this->conf['startPage'];
-		foreach ($keywords as $aKeyword => $count) {
-
-				// Load all the specific tag cloud-related values into the cObj data
-			$this->cObj->data['tag_keyword'] = $aKeyword;
-			$this->cObj->data['tag_link'] = $this->conf['targetPage'];
-			$this->cObj->data['tag_weight'] = $count;
-			$this->cObj->data['tag_style'] = $styles[$aKeyword];
-			$this->cObj->data['tag_id'] = $counter;
-			$this->cObj->data['tag_pages'] = (isset($this->allKeywordPages[$aKeyword])) ? implode('_', $this->allKeywordPages[$aKeyword]) : '';
-
-				// Call hooks to process tag data, if any
-			foreach($dataProcessors as $aDataProcessors) {
-				$aDataProcessors->processTagData($this->cObj->data);
+				// Load data processor hooks, if any
+			$dataProcessors = array();
+			if (is_array($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][$this->prefixId]['processTagData'])) {
+				foreach($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][$this->prefixId]['processTagData'] as $className) {
+					$dataProcessors[] = &t3lib_div::getUserObj($className);
+				}
 			}
 
-				// Assemble the tag
-			$tags[] = $this->cObj->stdWrap($aKeyword, $tagWrapConfiguration);
-			$counter++;
+				// Assemble the HTML code for the tag cloud
+			$tags = array();
+				// The counter is used to generated a unique ID number for each keyword
+			$counter = 1;
+			$tagWrapConfiguration = ($this->conf['renderingType'] == 'styles') ? $this->conf['tagWrapStyles.'] : $this->conf['tagWrap.'];
+				// Load the start page into the cObj data
+			$this->cObj->data['tag_startpage'] = $this->conf['startPage'];
+			foreach ($keywords as $aKeyword => $count) {
+
+					// Load all the specific tag cloud-related values into the cObj data
+				$this->cObj->data['tag_keyword'] = $aKeyword;
+				$this->cObj->data['tag_link'] = $this->conf['targetPage'];
+				$this->cObj->data['tag_weight'] = $count;
+				$this->cObj->data['tag_style'] = $styles[$aKeyword];
+				$this->cObj->data['tag_id'] = $counter;
+				$this->cObj->data['tag_pages'] = (isset($this->allKeywordPages[$aKeyword])) ? implode('_', $this->allKeywordPages[$aKeyword]) : '';
+
+					// Call hooks to process tag data, if any
+				foreach($dataProcessors as $aDataProcessors) {
+					$aDataProcessors->processTagData($this->cObj->data);
+				}
+
+					// Assemble the tag
+				$tags[] = $this->cObj->stdWrap($aKeyword, $tagWrapConfiguration);
+				$counter++;
+			}
+			$allTags = implode($this->conf['separator'], $tags);
+			$cloud = $this->cObj->stdWrap($allTags, $this->conf['cloudWrap.']);
 		}
-		$allTags = implode($this->conf['separator'], $tags);
-		$cloud = $this->cObj->stdWrap($allTags, $this->conf['cloudWrap.']);
 		return $cloud;
 	}
 
