@@ -581,6 +581,8 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 			// The counter is used to generated a unique ID number for each keyword
 		$counter = 1;
 		$tagWrapConfiguration = ($this->conf['renderingType'] == 'styles') ? $this->conf['tagWrapStyles.'] : $this->conf['tagWrap.'];
+			// Load the start page into the cObj data
+		$this->cObj->data['tag_startpage'] = $this->conf['startPage'];
 		foreach ($keywords as $aKeyword => $count) {
 
 				// Load all the specific tag cloud-related values into the cObj data
@@ -589,7 +591,7 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 			$this->cObj->data['tag_weight'] = $count;
 			$this->cObj->data['tag_style'] = $styles[$aKeyword];
 			$this->cObj->data['tag_id'] = $counter;
-			$this->cObj->data['tag_pages'] = (isset($this->allKeywordPages[$aKeyword])) ? implode('_', $this->allKeywordPages[$aKeyword]): '';
+			$this->cObj->data['tag_pages'] = (isset($this->allKeywordPages[$aKeyword])) ? implode('_', $this->allKeywordPages[$aKeyword]) : '';
 
 				// Call hooks to process tag data, if any
 			foreach($dataProcessors as $aDataProcessors) {
