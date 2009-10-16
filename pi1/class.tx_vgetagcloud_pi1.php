@@ -562,11 +562,11 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 			$tagWrapConfiguration = ($this->conf['renderingType'] == 'styles') ? $this->conf['tagWrapStyles.'] : $this->conf['tagWrap.'];
 				// Load the start page into the cObj data
 			$this->cObj->data['tag_startpage'] = $this->conf['startPage'];
+			$this->cObj->data['tag_link'] = $this->conf['targetPage'];
 			foreach ($keywords as $aKeyword => $count) {
 
 					// Load all the specific tag cloud-related values into the cObj data
 				$this->cObj->data['tag_keyword'] = $aKeyword;
-				$this->cObj->data['tag_link'] = $this->conf['targetPage'];
 				$this->cObj->data['tag_weight'] = $count;
 				$this->cObj->data['tag_style'] = $styles[$aKeyword];
 				$this->cObj->data['tag_id'] = $counter;

@@ -55,9 +55,8 @@ plugin.tx_vgetagcloud_pi1 {
 
 	tagWrap {
 		htmlSpecialChars = 1
-		dataWrap = <li style="font-size: {field:tag_style}%">|</li>
 		typolink {
-			parameter.data = field:tag_link
+			parameter.field = tag_link
 			additionalParams.cObject = TEXT
 			additionalParams.cObject {
 				field = tag_keyword
@@ -72,6 +71,7 @@ plugin.tx_vgetagcloud_pi1 {
 			}
 			useCacheHash = 1
 		}
+		dataWrap = <li style="font-size: {field:tag_style}%">|</li>
 	}
 
 // Default stdWrap for individual tags when rendering type is styles
