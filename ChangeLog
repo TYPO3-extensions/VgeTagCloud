@@ -1,10 +1,10 @@
 2009-10-16 Francois Suter <typo3@cobweb.ch>
 
 	* Improved TS in static templates to provide properly sanitized output, solves #3154
-	* Added separate renderings for tags depending on method (weights or styles), solves #3155
-	* Added loading of start page into the cObj data, solves #3171
-	* Added hook for post-processing the list of pages to get the tags from, solves #3173
-	* Added test to skip tag cloud generation if there are no keywords, solves #3192
+	* Added separate renderings for tags depending on method (weights or styles), solves #3155 (thanks to Gregor Hermens)
+	* Added loading of start page into the cObj data, solves #3171 (thanks to Gregor Hermens)
+	* Added hook for post-processing the list of pages to get the tags from, solves #3173 (thanks to Gregor Hermens)
+	* Added test to skip tag cloud generation if there are no keywords, solves #3192 (thanks to Gregor Hermens)
 
 2008-07-20 Francois Suter <typo3@cobweb.ch>
 
