@@ -195,14 +195,15 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 		}
 
 			// Get the list of pages to explore, if any
-		$pages = '';
+		$selectedPages = '';
 		if (!empty($this->conf['startPage'])) {
 			if (!empty($this->conf['recursive'])) {
-				$pages = $this->pi_getPidList($this->conf['startPage'], $this->conf['recursive']);
+				$selectedPages = $this->pi_getPidList($this->conf['startPage'], $this->conf['recursive']);
 			} else {
-				$pages = $this->conf['startPage'];
+				$selectedPages = $this->conf['startPage'];
 			}
 		}
+		$selectedPagesArray = t3lib_div::trimExplode(',', $selectedPages);
 
 			// Add exclusion of "not in menu" pages if includeNotInMenu = 0
 		if (empty($this->conf['includeNotInMenu'])) {
@@ -217,23 +218,30 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 					$excludePages[] = $row['uid'];
 				}
 
-					// Explode the list of page to explore so as to be able to diff the 2 arrays
-				$selectedPages = t3lib_div::trimExplode(',', $pages, 1);
-
 					// Use diff to exclude the "not in menu" pages from the list of pages to explore
 					// and redefine the list of pages as a comma-separated list of uid's
-				$includedPages = array_diff($selectedPages, $excludePages);
-				$pages = implode(',', $includedPages);
+				$selectedPagesArray = array_diff($selectedPagesArray, $excludePages);
 			}
+		}
+
+			// Handle list of exclude pages
+		if (!empty($this->conf['excludePids'])) {
+			$excludePages = $this->pi_getPidList($this->conf['excludePids'], 255);
+			$excludePagesArray = t3lib_div::trimExplode(',', $excludePages);
+			$selectedPagesArray = array_diff($selectedPagesArray, $excludePagesArray);
 		}
 
 			// Hook for post-processing the list of pages
 		if (is_array($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][$this->prefixId]['postProcessPages'])) {
 			foreach($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][$this->prefixId]['postProcessPages'] as $className) {
 				$postProcessor = &t3lib_div::getUserObj($className);
-				$pages = $postProcessor->postProcessPages($pages, $this);
+				$selectedPagesArray = $postProcessor->postProcessPages($selectedPagesArray, $this);
 			}
 		}
+
+			// Implode list of selected pages into a comma-separated list
+		$pages = implode(',', $selectedPagesArray);
+
 			// If at least one page is defined, assemble it into a where clause
 			// Note that this differs depending on whether we are interrogating the pages table or some other table
 		$condition = '';
@@ -244,8 +252,8 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 				$this->pageIdField = 'uid';
 			} else {
 				$fields = array_keys($GLOBALS['TYPO3_DB']->admin_get_fields($referenceTable));
-					// Use pid condition only if reference table has pid field :-)
-				if (in_array('pid',$fields)) {
+					// Use pid condition only if reference table has a pid field :-)
+				if (in_array('pid', $fields)) {
 					$condition = 'pid IN (' . $pages . ')';
 						// Store for later reference
 					$this->pageIdField = 'pid';

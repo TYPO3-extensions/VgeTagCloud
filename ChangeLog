@@ -1,3 +1,8 @@
+2009-10-18 Francois Suter <typo3@cobweb.ch>
+
+	* Added new excludePids property to exclude pages from the selection, solves #3562
+	* Refactored the code to select pages
+
 2009-10-16 Francois Suter <typo3@cobweb.ch>
 
 	* Improved TS in static templates to provide properly sanitized output, solves #3154
