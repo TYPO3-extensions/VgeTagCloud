@@ -2,6 +2,7 @@
 
 	* Added new excludePids property to exclude pages from the selection, solves #3562
 	* Refactored the code to select pages
+	* Released to TER as version 1.4.0
 
 2009-10-16 Francois Suter <typo3@cobweb.ch>
 
