@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2007 Ville de Genève <typo3@ville-ge.ch>
+*  (c) 2007-2009 Francois Suter <typo3@cobweb.ch>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -26,7 +26,7 @@
 /**
  * This class is an example of using the hooks provided within the vge_tagcloud extension
  *
- * @author		Ville de Genève <typo3@ville-ge.ch>
+ * @author		Francois Suter <typo3@cobweb.ch>
  * @package		TYPO3
  * @subpackage	tx_vgetagcloud
  */
@@ -40,16 +40,18 @@ class tx_vgetagcloud_hook_example {
 	 * This list is used in the processTagData() example method below
 	 */
 	function tx_vgetagcloud_hook_example() {
-			// Note that this is very rough. Enable fields should be tested for.
-		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_sgglossary_entries', '');
-			// Assemble associatve array to link keywords to their uid
-		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
-			$this->glossary[strtolower($row['word'])] = $row['uid'];
+		if (t3lib_extMgm::isLoaded('sg_glossary')) {
+				// Note that this is very rough. Enable fields should be tested for.
+			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_sgglossary_entries', '');
+				// Assemble associatve array to link keywords to their uid
+			while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+				$this->glossary[strtolower($row['word'])] = $row['uid'];
+			}
 		}
 	}
 
 	/**
-	 * This method received the data as extracted from the data and is expected to return
+	 * This method received the data as extracted from the database and is expected to return
 	 * an array of all words inside that data. No data transformation is expected at that point
 	 * (e.g. removal of duplicates or case transformation happens at a later point)
 	 *
