@@ -150,6 +150,10 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 		if (isset($this->conf['splitChar.'])) {
 			$this->conf['splitChar'] = $this->cObj->stdWrap($this->conf['splitChar'], $this->conf['splitChar.']);
 		}
+			// Handle excludePids as a stdWrap property
+		if (isset($this->conf['excludePids.'])) {
+			$this->conf['excludePids'] = $this->cObj->stdWrap($this->conf['excludePids'], $this->conf['excludePids.']);
+		}
 
 			// Start page (and recursive exploring of page tree beneath it) may come from TS
 			// or from a selection in the "startingpoint" form field
