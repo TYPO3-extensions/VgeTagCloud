@@ -1,3 +1,9 @@
+2009-11-06 Francois Suter <typo3@cobweb.ch>
+
+	* Added notes about upgrading to 1.4.0 (changes in default TS setup)
+	* Added notes about what is possible or not in the override TypoScript field, solves #5054
+	* Release to TER as version 1.4.1
+
 2009-10-18 Francois Suter <typo3@cobweb.ch>
 
 	* Added new excludePids property to exclude pages from the selection, solves #3562
