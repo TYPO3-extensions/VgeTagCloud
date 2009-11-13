@@ -1,3 +1,7 @@
+2009-11-13 Francois Suter <typo3@cobweb.ch>
+
+	* Corrected typo in the manual: "referenceField" used in example TS instead of "referenceFields" (thanks to Daniel Huf)
+
 2009-11-06 Francois Suter <typo3@cobweb.ch>
 
 	* Added notes about upgrading to 1.4.0 (changes in default TS setup)
