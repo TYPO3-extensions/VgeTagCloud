@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>CSH text for the vge_tagcloud pi_flexform options</description>
+		<type>CSH</type>
+		<csh_table></csh_table>
+		<fileId>EXT:vge_tagcloud/locallang_csh_vgetagcloud.xml</fileId>
+		<labelContext type="array">
+		</labelContext>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index=".alttitle">A Better Tag Cloud</label>
+			<label index=".description">Flexible tag cloud generator from any table or even several tables. Provides an additional plugin for viewing results pages. Fully cached.</label>
+			<label index="referenceTable.description">This is the table from which the keywords forming the tag cloud will be taken.</label>
+			<label index="referenceTable.details">
+				It is possible to extract keywords from several tables, but this requires to use TypoScript. Please refer to the manual for more details.
+			</label>
+			<label index="referenceFields.description">Choose the fields from which the keywords forming the tag cloud will be taken.</label>
+			<label index="includeNotInMenu.description">Check to include pages that are not in menu (when querying the pages table) or elements in pages that are not in menu (when querying the tt_content table, for example, on any other record that has a pid field).</label>
+			<label index="excludePids.description">Select pages from which keywords should not be gathered (or elements placed on these pages).</label>
+			<label index="splitChar.description">Character to use to split the values found in the reference fields. If left empty, values are split along word boundaries.</label>
+			<label index="uniqueKeywordsPerItem.description">If checked, each keyword will be counted only once inside each item considered by the tag cloud.</label>
+			<label index="uniqueKeywordsPerItem.details">
+				Example: you are building the tag cloud based on news title and have two news entitled “It's so good I could cry” and “Cry baby cry”. By default “cry” would have a count of 3 (1 in the first title and 2 in the second). By checking this box, “cry” counts only once in the second title and its total count is now 2.
+			</label>
+			<label index="caseHandling.description">Define whether keywords should be left as is or converted to lower or upper case.</label>
+			<label index="caseHandling.details">
+				If keywords are left as is, they will be differentiated based on case. For example, “typo3” and “TYPO3” will appear as two different tags in the cloud. The default behavior is to convert all words to lower case.
+			</label>
+			<label index="targetPage.description">Choose the page the links on each tag should point to.</label>
+			<label index="targetPage.details">Choosing a page is only part of the task. The actual links are built using TypoScript (see the "Configuration" chapter in the manual). The target page can also be defined globally by editing the plug-in's TypoScript constants.</label>
+			<label index="sorting.description">Choose the way keywords should be sorted before a limit (Maximum number of tags) is applied, if any. The default is by weight.</label>
+			<label index="sortOrder.description">Choose the order in which they ordering should be applied.</label>
+			<label index="maxWords.description">Set the maximum number of keywords that should appear in the tag cloud. An empty field (or a value of zero) means that all keywords get displayed.</label>
+			<label index="renderingType.description">Type of rendering to use. Select "weight" for relative weights or "style" for using a list of styles.</label>
+			<label index="minWeight.details">
+				The weight rendering method attributes a weight to each tag between two boundaries (minWeight and maxWeight, which default respectively to 100 and 200). This number is then used directly as a percentage of the "font-size" attributes (according to the default TypoScript provided by the plugin; custom uses are of course possible).
+
+				The styles rendering method takes a list of style names and splits the tags among these styles. For example if you define four styles, the words will be split into four weight groups and attributed the corresponding style.
+			</label>
+			<label index="minWeight.description">Minimum weight to use for the relative weights type of rendering.</label>
+			<label index="maxWeight.description">Maximum weight to use for the relative weights type of rendering.</label>
+			<label index="styles.description">Comma-separated list of styles to use when rendering with styles.</label>
+			<label index="separator.description">Characters to insert between each keyword.</label>
+			<label index="sortingForDisplay.description">Criterion by which to sort the keywords for display. Possible values are "natural" to avoid sorting the keywords, "alpha" (for alphabetical sorting) or "weight".</label>
+			<label index="sortOrderForDisplay.description">Complements the above parameter with an order, either "asc" (ascending) or "desc" (descending).</label>
+			<label index="flexformTS.description">TypoScript which will override the TypoScript from the template for plugin.tx_vgetagcloud_pi1.</label>
+			<label index="flexformTS.syntax">
+				Enter any of the available configuration for plugin.tx_vgetagcloud_pi1 as if you were already in that object. Example:
+
+				styles = red,green,blue
+			</label>
+		</languageKey>
+	</data>
+</T3locallang>

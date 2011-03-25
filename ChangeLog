@@ -1,3 +1,7 @@
+2011-03-25 Francois Suter <typo3@cobweb.ch>
+
+	* Added CSH to the pi1 FlexForm, resolves #5016
+
 2009-11-13 Francois Suter <typo3@cobweb.ch>
 
 	* Corrected typo in the manual: "referenceField" used in example TS instead of "referenceFields" (thanks to Daniel Huf)
@@ -54,7 +58,7 @@
 2008-03-02 Francois Suter <typo3@cobweb.ch>
 
 	* Added new hook for extracting keywords from database data
-	* Added new hook for manipulating cObj data (suggested with some code example by Marco Peemöller)
+	* Added new hook for manipulating cObj data (suggested with some code example by Marco Peemï¿½ller)
 
 2008-02-23 Francois Suter <typo3@cobweb.ch>
 

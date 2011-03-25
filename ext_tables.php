@@ -36,4 +36,7 @@ t3lib_extMgm::addStaticFile($_EXTKEY,'static/','A Better Tag Cloud');
 
 if (TYPO3_MODE == 'BE') $TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses']['tx_vgetagcloud_pi1_wizicon'] = t3lib_extMgm::extPath($_EXTKEY).'pi1/class.tx_vgetagcloud_pi1_wizicon.php';
 if (TYPO3_MODE == 'BE') $TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses']['tx_vgetagcloud_pi2_wizicon'] = t3lib_extMgm::extPath($_EXTKEY).'pi2/class.tx_vgetagcloud_pi2_wizicon.php';
+
+	// Add context sensitive help (csh) for the FlexForm
+t3lib_extMgm::addLLrefForTCAdescr('tt_content.pi_flexform.vge_tagcloud_pi1.list', 'EXT:' . $_EXTKEY . '/locallang_csh_vgetagcloud.xml');
 ?>

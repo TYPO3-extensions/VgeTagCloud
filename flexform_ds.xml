@@ -7,6 +7,7 @@
 			<ROOT>
 				<TCEforms>
 					<sheetTitle>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.sheetGeneral</sheetTitle>
+					<cshFile>LLL:EXT:vge_tagcloud/locallang_csh_vgetagcloud.xml</cshFile>
 				</TCEforms>
 				<type>array</type>
 				<el>
@@ -323,10 +324,10 @@
 								<size>30</size>
 								<rows>20</rows>
 							</config>
-						</TCEforms>      
+						</TCEforms>
 					</flexformTS>
 				</el>
 			</ROOT>
-		</sTyposcript>		
+		</sTyposcript>
 	</sheets>
 </T3DataStructure>
