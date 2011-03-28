@@ -41,6 +41,12 @@
 			</label>
 			<label index="minWeight.description">Minimum weight to use for the relative weights type of rendering.</label>
 			<label index="maxWeight.description">Maximum weight to use for the relative weights type of rendering.</label>
+			<label index="scale.description">Scaling method to apply to the weights.</label>
+			<label index="scale.details">
+				Scaling method to smoothen or – on the contrary – enhance the differences between the weights of the various tags. The default leaves the weights untouched. This is useful when there are wide differences in weight or when a given word has an extraordinary weight compared to others. The picture below gives an idea of the effect of each setting.
+			</label>
+			<label index="scale.image">EXT:vge_tagcloud/res/images/tagcloud_scales.png</label>
+			<label index="scale.image_descr">The effect of the various scaling methods</label>
 			<label index="styles.description">Comma-separated list of styles to use when rendering with styles.</label>
 			<label index="separator.description">Characters to insert between each keyword.</label>
 			<label index="sortingForDisplay.description">Criterion by which to sort the keywords for display. Possible values are "natural" to avoid sorting the keywords, "alpha" (for alphabetical sorting) or "weight".</label>

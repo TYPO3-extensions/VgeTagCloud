@@ -1,3 +1,7 @@
+2011-03-28 Francois Suter <typo3@cobweb.ch>
+
+	* Added scaling methods for word weights, resolves #5017 (thanks to Gregor Hermens)
+
 2011-03-25 Francois Suter <typo3@cobweb.ch>
 
 	* Added CSH to the pi1 FlexForm, resolves #5016

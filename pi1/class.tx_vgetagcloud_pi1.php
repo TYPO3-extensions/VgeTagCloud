@@ -681,11 +681,36 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 			$minRelWeight = $this->conf['minWeight'];
 			$maxRelWeight = $this->conf['maxWeight'];
 			$deltaRelWeight = $maxRelWeight - $minRelWeight;
+			$scaleFactor = intval($this->conf['scaleFactor']);
+			if ($scaleFactor <= 0) {
+				$scaleFactor = 3;
+			}
 			foreach ($keywords as $aKeyword => $count) {
 				if ($deltaWeight == 0) {
 					$size = $minRelWeight;
 				} else {
-					$size = $minRelWeight + ((($count - $smallestWeight) / $deltaWeight) * $deltaRelWeight);
+					$linearDeltaSize = ($count - $smallestWeight) / $deltaWeight; // 0 <= $linearDeltaSize <= 1
+
+					switch($this->conf['scale']) {
+						case 'flatTop':
+							$deltaSize = 1 - pow((1 - $linearDeltaSize), $scaleFactor);
+							break;
+						case 'flatBottom':
+							$deltaSize = pow($linearDeltaSize, $scaleFactor);
+							break;
+						case 'flatTopAndBottom':
+							$deltaSize = sin(( sin( $linearDeltaSize * M_PI - M_PI/2 ) / 2 + .5 ) * M_PI - M_PI/2) / 2 + .5;
+							break;
+						case 'flatMiddle':
+							$deltaSize = 2 * $linearDeltaSize + sin( $linearDeltaSize * M_PI + M_PI / 2 ) / 2 - .5;
+							$deltaSize = 2 * $deltaSize + sin( $deltaSize * M_PI + M_PI / 2 ) / 2 - .5;
+							break;
+						case 'linear':
+						default:
+							$deltaSize = $linearDeltaSize;
+					}
+
+					$size = $minRelWeight + ($deltaSize * $deltaRelWeight);
 				}
 				$styles[$aKeyword] = round($size);
 			}

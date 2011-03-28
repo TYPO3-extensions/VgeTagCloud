@@ -239,6 +239,40 @@
 							</config>
 						</TCEforms>
 					</maxWeight>
+					<scale>
+						<TCEforms>
+							<label>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.scale</label>
+							<config>
+								<type>select</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.default</numIndex>
+										<numIndex index="1">linear</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.flatTop</numIndex>
+										<numIndex index="1">flatTop</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.flatBottom</numIndex>
+										<numIndex index="1">flatBottom</numIndex>
+									</numIndex>
+									<numIndex index="3" type="array">
+										<numIndex index="0">LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.flatTopAndBottom</numIndex>
+										<numIndex index="1">flatTopAndBottom</numIndex>
+									</numIndex>
+									<numIndex index="4" type="array">
+										<numIndex index="0">LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.flatMiddle</numIndex>
+										<numIndex index="1">flatMiddle</numIndex>
+									</numIndex>
+								</items>
+								<size>1</size>
+								<default></default>
+								<minitems>0</minitems>
+								<maxitems>1</maxitems>
+							</config>
+						</TCEforms>
+					</scale>
 					<styles>
 						<TCEforms>
 							<label>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.styles</label>

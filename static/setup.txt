@@ -3,7 +3,7 @@
  *
  * $Id: setup.txt 3928 2008-06-02 19:14:02Z fsuter $
  */
- 
+
 plugin.tx_vgetagcloud_pi1 {
 
 // Default settings for origin of keywords
@@ -48,6 +48,8 @@ plugin.tx_vgetagcloud_pi1 {
 	renderingType = weight
 	minWeight = 100
 	maxWeight = 200
+	scale = linear
+	scaleFactor = 3
 	sortingForDisplay = alpha
 	sortOrderForDisplay = asc
 
@@ -110,7 +112,7 @@ plugin.tx_vgetagcloud_pi1 {
 /*
  * Default TypoScript setup for vge_tagcloud_pi2 plugin
  */
- 
+
 plugin.tx_vgetagcloud_pi2 {
 	keyword {
 		htmlSpecialChars = 1
