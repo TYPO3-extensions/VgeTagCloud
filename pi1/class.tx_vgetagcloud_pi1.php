@@ -156,10 +156,10 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 		}
 
 			// Start page (and recursive exploring of page tree beneath it) may come from TS
-			// or from a selection in the "startingpoint" form field
+			// or from a selection in the "pages" form field
 			// If the start page is still empty after all that, use current page as starting point
-		if (isset($conf['startPage.'])) {
-			$this->conf['startPage'] = $this->cObj->stdWrap('', $conf['startPage.']);
+		if (isset($conf['startPage']) || isset($conf['startPage.'])) {
+			$this->conf['startPage'] = $this->cObj->stdWrap($conf['startPage'], $conf['startPage.']);
 		}
 		if (!empty($this->cObj->data['pages'])) {
 			$this->conf['startPage'] = $this->cObj->data['pages'];
