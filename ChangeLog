@@ -2,6 +2,7 @@
 
 	* Added scaling methods for word weights, resolves #5017 (thanks to Gregor Hermens)
 	* Corrected an error in handling startPage setting, resolves #12895
+	* Updated the manual and added a PDF version
 
 2011-03-25 Francois Suter <typo3@cobweb.ch>
 
