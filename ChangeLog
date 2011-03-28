@@ -3,6 +3,7 @@
 	* Added scaling methods for word weights, resolves #5017 (thanks to Gregor Hermens)
 	* Corrected an error in handling startPage setting, resolves #12895
 	* Updated the manual and added a PDF version
+	* Released to TER as version 1.5.0
 
 2011-03-25 Francois Suter <typo3@cobweb.ch>
 
@@ -16,7 +17,7 @@
 
 	* Added notes about upgrading to 1.4.0 (changes in default TS setup)
 	* Added notes about what is possible or not in the override TypoScript field, solves #5054
-	* Release to TER as version 1.4.1
+	* Released to TER as version 1.4.1
 
 2009-10-18 Francois Suter <typo3@cobweb.ch>
 
