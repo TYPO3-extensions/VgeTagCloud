@@ -1,6 +1,7 @@
 2011-11-08 Francois Suter <typo3@cobweb.ch>
 
 	* Improved compatibility of splitWords property with UTF-8 data, resolves #25821
+	* Small code clean up, verified compatibility with TYPO3 4.6, resolves #31685
 
 2011-03-28 Francois Suter <typo3@cobweb.ch>
 

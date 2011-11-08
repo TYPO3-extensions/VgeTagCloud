@@ -139,6 +139,7 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 				// Check for file inclusion
 			$typoscript = t3lib_TSparser::checkIncludeLines($this->conf['flexformTS']);
 				// Instantiate a TS parser
+				/** @var $parseObj t3lib_TSparser */
 	        $parseObj = t3lib_div::makeInstance('t3lib_TSparser');
 				// Parse the local TypoScript
 	   	    $parseObj->parse($typoscript);
@@ -284,7 +285,6 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 			// This is not done for the pages table, which has a different overlay mechanism
 		if ($referenceTable != 'pages') {
 			if (!empty($tableTCA['ctrl']['languageField'])) {
-				$languageCondition = '';
 				if (isset($GLOBALS['TSFE']->sys_language_contentOL) && isset($tableTCA['ctrl']['transOrigPointerField'])) {
 					$languageCondition = $tableTCA['ctrl']['languageField'] . ' IN (0,-1)'; // Default language and "all" language
 
@@ -491,7 +491,6 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 	 * @return	array		Array of keywords, sorted and limited
 	 */
 	function sortAndCapKeywords($keywords) {
-		$slicedKeywords = array();
 
 			// Make sure some default values are set for sorting
 		if (empty($this->conf['sorting'])) {
