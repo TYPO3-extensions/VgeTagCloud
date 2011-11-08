@@ -2,6 +2,7 @@
 
 	* Improved compatibility of splitWords property with UTF-8 data, resolves #25821
 	* Small code clean up, verified compatibility with TYPO3 4.6, resolves #31685
+	* Released to TER as version 1.6.0
 
 2011-03-28 Francois Suter <typo3@cobweb.ch>
 
