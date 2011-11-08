@@ -1,3 +1,7 @@
+2011-11-08 Francois Suter <typo3@cobweb.ch>
+
+	* Improved compatibility of splitWords property with UTF-8 data, resolves #25821
+
 2011-03-28 Francois Suter <typo3@cobweb.ch>
 
 	* Added scaling methods for word weights, resolves #5017 (thanks to Gregor Hermens)

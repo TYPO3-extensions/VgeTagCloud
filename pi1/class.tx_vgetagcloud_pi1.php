@@ -405,8 +405,13 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 						} elseif (empty($this->conf['splitChar'])) {
 							// If there's no splitChar define, we use word boundaries
 
-							$rawKeywords = preg_split('/' . addcslashes($this->conf['splitWords'], "'/") . '/', strip_tags($row[$aField]));
-							foreach ($rawKeywords as $theKeyword) { // Exclude empty or blank strings
+							$regularExpression = addcslashes($this->conf['splitWords'], "'/");
+							if (!empty($this->conf['splitWordsWrap'])) {
+								$regularExpression = $this->cObj->wrap($regularExpression, $this->conf['splitWordsWrap']);
+							}
+							$rawKeywords = preg_split($regularExpression, strip_tags($row[$aField]));
+							foreach ($rawKeywords as $theKeyword) {
+									// Exclude empty or blank strings
 								$theKeyword = trim($theKeyword);
 								if (!empty($theKeyword)) {
 									$keywords[] = $theKeyword;
@@ -424,7 +429,7 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 							}
 						}
 
-							// Store keywords in the global keyword array, appyling case transformation if necessary
+							// Store keywords in the global keyword array, applying case transformation if necessary
 						foreach ($keywords as $aKeyword) {
 							if ($this->conf['caseHandling'] == 'upper') {
 								$aKeyword = $GLOBALS['TSFE']->csConvObj->conv_case($GLOBALS['TSFE']->renderCharset, $aKeyword,'toUpper');

@@ -14,6 +14,7 @@ plugin.tx_vgetagcloud_pi1 {
 	recursive = 255
 	uniqueKeywordsPerItem = 0
 	splitWords = [-.,;:"&%()<>!?/'\s]
+	splitWordsWrap = /|/u
 	caseHandling = lower
 
 // Cache of page links is active by default
