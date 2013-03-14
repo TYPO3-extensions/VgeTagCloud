@@ -34,16 +34,14 @@ class tx_vgetagcloud_hook_example {
 	var $glossary = array();
 
 	/**
-	 * Constructor
-	 *
-	 * In this case the constructor is used to build a list of keywords from the sg_glossary extension
+	 * The constructor is used to build a list of keywords from the sg_glossary extension
 	 * This list is used in the processTagData() example method below
 	 */
-	function tx_vgetagcloud_hook_example() {
+	function __construct() {
 		if (t3lib_extMgm::isLoaded('sg_glossary')) {
 				// Note that this is very rough. Enable fields should be tested for.
 			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_sgglossary_entries', '');
-				// Assemble associatve array to link keywords to their uid
+				// Assemble associative array to link keywords to their uid
 			while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 				$this->glossary[strtolower($row['word'])] = $row['uid'];
 			}
@@ -51,25 +49,23 @@ class tx_vgetagcloud_hook_example {
 	}
 
 	/**
-	 * This method received the data as extracted from the database and is expected to return
+	 * This method receives the data as extracted from the database and is expected to return
 	 * an array of all words inside that data. No data transformation is expected at that point
 	 * (e.g. removal of duplicates or case transformation happens at a later point)
 	 *
-	 * @param	mixed	$data: database field containing the data from which to extract the keywords
-	 * @param	array	$conf: TS configuration of the calling object
-	 * @param	array	$keyword: array of keywords passed as a reference (in case several hooks are called in a row)
+	 * @param mixed $data Database field containing the data from which to extract the keywords
+	 * @param array $conf TS configuration of the calling object
+	 * @param array $keywords Array of keywords passed as a reference (in case several hooks are called in a row)
 	 *
-	 * @return	void
+	 * @return    void
 	 */
 	function extractKeywords($data, $conf, &$keywords) {
 
-// This example hook extracts keywords from the "field_caption" field of a localised FCE
-// First transform FCE's xml to an array
-
+		// This example hook extracts keywords from the "field_caption" field of a localised FCE
+		// First transform FCE's xml to an array
 		$flexformData = t3lib_div::xml2array($data);
 
-// Translate current language number to pointer for flexform
-
+		// Translate current language number to pointer for flexform
 		if (!empty($flexformData['data']['sDEF']['lDEF']['field_caption'])) {
 			switch ($GLOBALS['TSFE']->sys_language_content) {
 				case 1:
@@ -83,11 +79,11 @@ class tx_vgetagcloud_hook_example {
 			}
 			$theField = $flexformData['data']['sDEF']['lDEF']['field_caption'][$langField];
 
-// Extract keywords using the same methods as inside the plugin
-
+			// Extract keywords using the same methods as inside the plugin
 			if (empty($conf['splitChar'])) {
 				$rawKeywords = preg_split('/'.addcslashes($conf['splitWords'],"'/").'/',strip_tags($theField));
-				foreach ($rawKeywords as $theKeyword) { // Exclude empty or blank strings
+				// Exclude empty or blank strings
+				foreach ($rawKeywords as $theKeyword) {
 					$theKeyword = trim($theKeyword);
 					if (!empty($theKeyword)) $keywords[] = $theKeyword;
 				}
@@ -104,12 +100,12 @@ class tx_vgetagcloud_hook_example {
 	 *
 	 * In this example, we just filter out any word containing 2 letters or less
 	 *
-	 * @param	array	$keywords: list of keywords
-	 * @param	mixed	$callingObj: callback to the calling object
+	 * @param array $keywords List of keywords
+	 * @param tx_vgetagcloud_pi1 $callingObj Callback to the calling object
 	 *
 	 * @return	array	transformed list of keywords
 	 */
-	function postProcessRawKeywords($keywords, &$callingObj) {
+	function postProcessRawKeywords($keywords, tx_vgetagcloud_pi1 $callingObj) {
 		$transformedKeywords = array();
 		foreach ($keywords as $aKeyword) {
 			if ($GLOBALS['TSFE']->csConvObj->strlen($GLOBALS['TSFE']->renderCharset,$aKeyword) > 2) {
@@ -126,12 +122,12 @@ class tx_vgetagcloud_hook_example {
 	 *
 	 * In this example, we sort the keywords by string length
 	 *
-	 * @param	array	$keywords: list of keywords
-	 * @param	mixed	$callingObj: callback to the calling object
+	 * @param array $keywords List of keywords
+	 * @param tx_vgetagcloud_pi1 $callingObj Callback to the calling object
 	 *
 	 * @return	array	transformed list of keywords
 	 */
-	function postProcessFinalKeywords($keywords, &$callingObj) {
+	function postProcessFinalKeywords($keywords, tx_vgetagcloud_pi1 $callingObj) {
 		uksort($keywords, array('tx_vgetagcloud_hook_example','sortKeywordsByLength'));
 		return $keywords;
 	}
@@ -139,10 +135,10 @@ class tx_vgetagcloud_hook_example {
 	/**
 	 * This method is a helper sorting function to sort an array according to the length of its keys
 	 *
-	 * @param	string		$a: first item key
-	 * @param	string		$b: second item key
+	 * @param string $a First item key
+	 * @param string $b Second item key
 	 *
-	 * @return	integer		-1, 0 or 1 depending in result of comparison
+	 * @return integer -1, 0 or 1 depending in result of comparison
 	 */
 	function sortKeywordsByLength($a,$b) {
 		$aLength = $GLOBALS['TSFE']->csConvObj->strlen($GLOBALS['TSFE']->renderCharset,$a);
@@ -159,7 +155,7 @@ class tx_vgetagcloud_hook_example {
 	 * This method receives the data array of the calling cObj as a reference
 	 * It can thus modify it as desired
 	 *
-	 * @param	array	$data: data array of the calling cObj
+	 * @param array $data Data array of the calling cObj
 	 *
 	 * @return	void
 	 */
