@@ -177,9 +177,9 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 	 * This method can be used for a light and fast initialization when not called as a FE plugin
 	 * to avoid all the work performed when calling main()
 	 *
-	 * @param	array				$conf: TS configuration of the extension
-	 * @param	tslib_content		$cObj: content object
-	 * @return	void
+	 * @param array $conf TS configuration of the extension
+	 * @param tslib_cObj $cObj Content object
+	 * @return void
 	 */
 	function externalInit($conf, $cObj)	{
 		$this->conf = $conf;
@@ -494,10 +494,10 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 
 			// Make sure some default values are set for sorting
 		if (empty($this->conf['sorting'])) {
-			$this->conf['sorting'] == 'natural';
+			$this->conf['sorting'] = 'natural';
 		}
 		if (empty($this->conf['sortOrder'])) {
-			$this->conf['sortOrder'] == 'asc';
+			$this->conf['sortOrder'] = 'asc';
 		}
 
 			// Sort keywords
@@ -614,10 +614,10 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 
 			// Make sure some default values are set for sorting
 		if (empty($this->conf['sortingForDisplay'])) {
-			$this->conf['sortingForDisplay'] == 'natural';
+			$this->conf['sortingForDisplay'] = 'natural';
 		}
 		if (empty($this->conf['sortOrderForDisplay'])) {
-			$this->conf['sortOrderForDisplay'] == 'asc';
+			$this->conf['sortOrderForDisplay'] = 'asc';
 		}
 
 			// Sort keywords

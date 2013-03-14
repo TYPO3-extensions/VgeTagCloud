@@ -34,40 +34,43 @@
  */
 class tx_vgetagcloud_pi2_wizicon {
 
-					/**
-					 * Processing the wizard items array
-					 *
-					 * @param	array		$wizardItems: The wizard items
-					 * @return	Modified array with wizard items
-					 */
-					function proc($wizardItems)	{
-						global $LANG;
+	/**
+	 * Processing the wizard items array
+	 *
+	 * @param array $wizardItems The wizard items
+	 * @return array Modified array with wizard items
+	 */
+	function proc($wizardItems)	{
+		$LL = $this->includeLocalLang();
 
-						$LL = $this->includeLocalLang();
+		$wizardItems['plugins_tx_vgetagcloud_pi2'] = array(
+			'icon' => t3lib_extMgm::extRelPath('vge_tagcloud') . 'pi2/ce_wiz.gif',
+			'title' => $GLOBALS['LANG']->getLLL('pi2_title', $LL),
+			'description' => $GLOBALS['LANG']->getLLL('pi2_plus_wiz_description', $LL),
+			'params' => '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=vge_tagcloud_pi2'
+		);
 
-						$wizardItems['plugins_tx_vgetagcloud_pi2'] = array(
-							'icon'=>t3lib_extMgm::extRelPath('vge_tagcloud').'pi2/ce_wiz.gif',
-							'title'=>$LANG->getLLL('pi2_title',$LL),
-							'description'=>$LANG->getLLL('pi2_plus_wiz_description',$LL),
-							'params'=>'&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=vge_tagcloud_pi2'
-						);
+		return $wizardItems;
+	}
 
-						return $wizardItems;
-					}
+	/**
+	 * Reads the [extDir]/locallang.xml and returns the $LOCAL_LANG array found in that file.
+	 *
+	 * @return array The array with language labels
+	 */
+	function includeLocalLang()	{
+		$llFile = t3lib_extMgm::extPath('vge_tagcloud') . 'locallang.xml';
+		if (class_exists('t3lib_l10n_parser_Llxml')) {
+				/** @var $l10nParser t3lib_l10n_parser_Llxml */
+			$l10nParser = t3lib_div::makeInstance('t3lib_l10n_parser_Llxml');
+			$LOCAL_LANG = $l10nParser->getParsedData($llFile, $GLOBALS['LANG']->lang);
+		} else {
+			$LOCAL_LANG = t3lib_div::readLLXMLfile($llFile, $GLOBALS['LANG']->lang);
+		}
 
-					/**
-					 * Reads the [extDir]/locallang.xml and returns the $LOCAL_LANG array found in that file.
-					 *
-					 * @return	The array with language labels
-					 */
-					function includeLocalLang()	{
-						$llFile = t3lib_extMgm::extPath('vge_tagcloud').'locallang.xml';
-						$LOCAL_LANG = t3lib_div::readLLXMLfile($llFile, $GLOBALS['LANG']->lang);
-						
-						return $LOCAL_LANG;
-					}
-				}
-
+		return $LOCAL_LANG;
+	}
+}
 
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/vge_tagcloud/pi2/class.tx_vgetagcloud_pi2_wizicon.php'])	{
