@@ -1,6 +1,7 @@
 2013-03-14 Francois Suter <typo3@cobweb.ch>
 
 	* Verified compatibility with TYPO3 CMS 6.0, resolves #46300
+	* Improved security on keyword display by relying on PHP rather than TypoScript, resolves #46301
 
 2011-11-08 Francois Suter <typo3@cobweb.ch>
 

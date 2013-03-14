@@ -116,7 +116,6 @@ plugin.tx_vgetagcloud_pi1 {
 
 plugin.tx_vgetagcloud_pi2 {
 	keyword {
-		htmlSpecialChars = 1
 		wrap = <strong>|</strong>
 	}
 	message.wrap = <p>|</p>

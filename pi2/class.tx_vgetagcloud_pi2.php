@@ -50,7 +50,7 @@ class tx_vgetagcloud_pi2 extends tslib_pibase {
 		$this->init($conf);
 
 			// Get the selected keyword and apply stdWrap, if any
-		$keyword = (empty($this->piVars['keyword'])) ? '' : $this->piVars['keyword'];
+		$keyword = (empty($this->piVars['keyword'])) ? '' : htmlspecialchars($this->piVars['keyword']);
 		if (isset($this->conf['keyword.'])) {
 			$keyword = $this->cObj->stdWrap($keyword, $this->conf['keyword.']);
 		}
@@ -70,7 +70,6 @@ class tx_vgetagcloud_pi2 extends tslib_pibase {
 			$pages = t3lib_div::trimExplode('_', $this->piVars['pages'], 1);
 
 				// Get result message and apply stdWrap, if any
-			$message = '';
 			if (count($pages) == 1) {
 				$message = $this->pi_getLL('related_single_page');
 					// Message may contain 1 marker
