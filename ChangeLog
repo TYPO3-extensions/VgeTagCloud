@@ -3,6 +3,7 @@
 	* Added minimum length filtering for tag cloud keywords, resolves #5015
 	* Removed old code and raised requirement to TYPO3 4.5, resolves #46345
 	* Added icons for the publing selector, resolves #46346
+	* Released to TER as version 1.7.0
 
 2013-03-14 Francois Suter <typo3@cobweb.ch>
 
