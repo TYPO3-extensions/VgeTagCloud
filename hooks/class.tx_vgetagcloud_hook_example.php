@@ -100,6 +100,8 @@ class tx_vgetagcloud_hook_example {
 	 *
 	 * In this example, we just filter out any word containing 2 letters or less
 	 *
+	 * NOTE: this hook is not useful anymore, since this feature was included in the code base in version 1.7.0.
+	 *
 	 * @param array $keywords List of keywords
 	 * @param tx_vgetagcloud_pi1 $callingObj Callback to the calling object
 	 *

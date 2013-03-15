@@ -2,6 +2,7 @@
 
 	* Verified compatibility with TYPO3 CMS 6.0, resolves #46300
 	* Improved security on keyword display by relying on PHP rather than TypoScript, resolves #46301
+	* Added minimum length filtering for tag cloud keywords, resolves #5015
 
 2011-11-08 Francois Suter <typo3@cobweb.ch>
 

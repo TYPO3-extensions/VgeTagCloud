@@ -30,6 +30,7 @@
 			</label>
 			<label index="targetPage.description">Choose the page the links on each tag should point to.</label>
 			<label index="targetPage.details">Choosing a page is only part of the task. The actual links are built using TypoScript (see the "Configuration" chapter in the manual). The target page can also be defined globally by editing the plug-in's TypoScript constants.</label>
+			<label index="minLength.description">Minimum length each word must have to be included in the tag cloud.</label>
 			<label index="sorting.description">Choose the way keywords should be sorted before a limit (Maximum number of tags) is applied, if any. The default is by weight.</label>
 			<label index="sortOrder.description">Choose the order in which they ordering should be applied.</label>
 			<label index="maxWords.description">Set the maximum number of keywords that should appear in the tag cloud. An empty field (or a value of zero) means that all keywords get displayed.</label>

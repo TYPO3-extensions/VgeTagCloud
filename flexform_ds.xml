@@ -129,6 +129,17 @@
 							</config>
 						</TCEforms>
 					</targetPage>
+					<minLength>
+						<TCEforms>
+							<label>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.minLength</label>
+							<config>
+								<type>input</type>
+								<eval>int</eval>
+								<checkbox></checkbox>
+								<size>6</size>
+							</config>
+						</TCEforms>
+					</minLength>
 					<sorting>
 						<TCEforms>
 							<label>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.sorting</label>

@@ -16,6 +16,7 @@
 			<label index="vge_tagcloud.pi_flexform.referenceFields">Reference fields</label>
 			<label index="vge_tagcloud.pi_flexform.chooseFields">choose which fields to use</label>
 			<label index="vge_tagcloud.pi_flexform.targetPage">Target page for tag links</label>
+			<label index="vge_tagcloud.pi_flexform.minLength">Filter: minimum word length</label>
 			<label index="vge_tagcloud.pi_flexform.includeNotInMenu">Include not in menu pages</label>
 			<label index="vge_tagcloud.pi_flexform.excludePids">Exclude pages (and their sub-pages)</label>
 			<label index="vge_tagcloud.pi_flexform.splitChar">Character for splitting field(s) value</label>

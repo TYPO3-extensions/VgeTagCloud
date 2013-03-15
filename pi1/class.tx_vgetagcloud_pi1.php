@@ -171,6 +171,14 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 		if (!empty($this->cObj->data['recursive'])) {
 			$this->conf['recursive'] = $this->cObj->data['recursive'];
 		}
+
+		// Make sure some parameters are integers (if defined)
+		if (isset($this->conf['minLength'])) {
+			$this->conf['minLength'] = intval($this->conf['minLength']);
+		}
+		if (isset($this->conf['maxWords'])) {
+			$this->conf['maxWords'] = intval($this->conf['maxWords']);
+		}
 	}
 
 	/**
@@ -430,22 +438,26 @@ class tx_vgetagcloud_pi1 extends tslib_pibase {
 						}
 
 							// Store keywords in the global keyword array, applying case transformation if necessary
+							// and any defined length limit
 						foreach ($keywords as $aKeyword) {
 							if ($this->conf['caseHandling'] == 'upper') {
 								$aKeyword = $GLOBALS['TSFE']->csConvObj->conv_case($GLOBALS['TSFE']->renderCharset, $aKeyword,'toUpper');
 							} elseif ($this->conf['caseHandling'] == 'lower') {
 								$aKeyword = $GLOBALS['TSFE']->csConvObj->conv_case($GLOBALS['TSFE']->renderCharset, $aKeyword,'toLower');
 							}
-							$allKeywords[] = $aKeyword;
+							// If no minimum length is defined, or if one is defined but matched, keep the keyword
+							if (empty($this->conf['minLength']) || (!empty($this->conf['minLength']) && $GLOBALS['TSFE']->csConvObj->strlen($GLOBALS['TSFE']->renderCharset, $aKeyword) > $this->conf['minLength'])) {
+								$allKeywords[] = $aKeyword;
 
-								// If there's a page id to remember, store it now
-								// making sure array is set and that no page id is stored twice for a given keyword
-							if (!empty($this->pageIdField)) {
-								if (!isset($this->allKeywordPages[$aKeyword])) {
-									$this->allKeywordPages[$aKeyword] = array();
-								}
-								if (!in_array($row[$this->pageIdField], $this->allKeywordPages[$aKeyword])) {
-									$this->allKeywordPages[$aKeyword][] = $row[$this->pageIdField];
+									// If there's a page id to remember, store it now
+									// making sure array is set and that no page id is stored twice for a given keyword
+								if (!empty($this->pageIdField)) {
+									if (!isset($this->allKeywordPages[$aKeyword])) {
+										$this->allKeywordPages[$aKeyword] = array();
+									}
+									if (!in_array($row[$this->pageIdField], $this->allKeywordPages[$aKeyword])) {
+										$this->allKeywordPages[$aKeyword][] = $row[$this->pageIdField];
+									}
 								}
 							}
 						}
