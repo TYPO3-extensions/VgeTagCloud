@@ -76,7 +76,6 @@
 							<label>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.splitChar</label>
 							<config>
 								<type>input</type>
-								<checkbox></checkbox>
 								<size>4</size>
 							</config>
 						</TCEforms>
@@ -135,7 +134,6 @@
 							<config>
 								<type>input</type>
 								<eval>int</eval>
-								<checkbox></checkbox>
 								<size>6</size>
 							</config>
 						</TCEforms>
@@ -194,7 +192,6 @@
 							<config>
 								<type>input</type>
 								<eval>int</eval>
-								<checkbox></checkbox>
 								<size>6</size>
 							</config>
 						</TCEforms>
@@ -234,7 +231,6 @@
 							<config>
 								<type>input</type>
 								<eval>int</eval>
-								<checkbox></checkbox>
 								<size>6</size>
 							</config>
 						</TCEforms>
@@ -245,7 +241,6 @@
 							<config>
 								<type>input</type>
 								<eval>int</eval>
-								<checkbox></checkbox>
 								<size>6</size>
 							</config>
 						</TCEforms>
@@ -289,7 +284,6 @@
 							<label>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.styles</label>
 							<config>
 								<type>input</type>
-								<checkbox></checkbox>
 								<size>30</size>
 							</config>
 						</TCEforms>
@@ -299,7 +293,6 @@
 							<label>LLL:EXT:vge_tagcloud/locallang_db.xml:vge_tagcloud.pi_flexform.separator</label>
 							<config>
 								<type>input</type>
-								<checkbox></checkbox>
 								<size>5</size>
 							</config>
 						</TCEforms>
