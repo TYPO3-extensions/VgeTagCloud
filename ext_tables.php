@@ -24,9 +24,22 @@ $GLOBALS['TCA']['tt_content']['ctrl']['requestUpdate'] .= ',referenceTable';
 require_once(t3lib_extMgm::extPath($_EXTKEY).'class.tx_vgetagcloud_listsdef.php');
 
 // Add the plug-ins to the list of existing plug-ins
-
-t3lib_extMgm::addPlugin(array('LLL:EXT:vge_tagcloud/locallang_db.xml:tt_content.list_type_pi1', $_EXTKEY.'_pi1'),'list_type');
-t3lib_extMgm::addPlugin(array('LLL:EXT:vge_tagcloud/locallang_db.xml:tt_content.list_type_pi2', $_EXTKEY.'_pi2'),'list_type');
+t3lib_extMgm::addPlugin(
+	array(
+		'LLL:EXT:vge_tagcloud/locallang_db.xml:tt_content.list_type_pi1',
+		$_EXTKEY . '_pi1',
+		t3lib_extMgm::extRelPath($_EXTKEY) . 'res/images/plugin1_icon.png'
+	),
+	'list_type'
+);
+t3lib_extMgm::addPlugin(
+	array(
+		'LLL:EXT:vge_tagcloud/locallang_db.xml:tt_content.list_type_pi2',
+		$_EXTKEY . '_pi2',
+		t3lib_extMgm::extRelPath($_EXTKEY) . 'res/images/plugin2_icon.png'
+	),
+	'list_type'
+);
 
 // Define the path to the static TS files
 
