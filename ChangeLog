@@ -1,3 +1,7 @@
+2014-06-07 Francois Suter <typo3@cobweb.ch>
+
+	* Verified compatibility with TYPO3 CMS 6.2, resolves #59407
+
 2013-03-15 Francois Suter <typo3@cobweb.ch>
 
 	* Added minimum length filtering for tag cloud keywords, resolves #5015

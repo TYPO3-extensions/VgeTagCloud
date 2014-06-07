@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2007-2009 Francois Suter <typo3@cobweb.ch>
+*  (c) 2007-2014 Francois Suter <typo3@cobweb.ch>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -22,16 +22,12 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-require_once(PATH_tslib . 'class.tslib_pibase.php');
-
 /**
  * Display a (better) tag cloud for the 'vge_tagcloud' extension.
  *
  * @author		Francois Suter <typo3@cobweb.ch>
  * @package		TYPO3
  * @subpackage	tx_vgetagcloud
- *
- * $Id$
  */
 class tx_vgetagcloud_pi1 extends tslib_pibase {
 	var $prefixId      = 'tx_vgetagcloud_pi1';		// Same as class name
